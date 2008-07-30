@@ -1,0 +1,27 @@
+#theme_editor {
+}
+
+#cursor {
+    border:         1px solid #000;
+    height:         10px;
+    width:          10px;
+    background:     #fff;
+}
+
+#theme_editor #editor {
+    margin:         0 300px 0 0;
+    padding:        3px;
+}
+
+#theme_editor #editor .background {
+    white-space:    pre;
+    line-height:    1.2em;
+    font-family:    "Bitstream Vera Sans Mono", "Monaco", "Courier", monospace;
+	  font-weight:    normal;
+    padding:        0.8em;
+}
+
+#theme_editor #styles {
+    width:          300px;
+    float:          right;
+}

@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+{% block head %}
+    <link type="text/css" rel="stylesheet" href="/static/stylesheets/theme_editor.css"/>
+    <link type="text/css" rel="stylesheet" href="/static/stylesheets/farbtastic.css"/>
+
+    <script type="text/javascript" src="/static/javascript/farbtastic.js"/></script>
+    <script type="text/javascript" src="/static/javascript/theme_editor.js"/></script>
+{% endblock %}
+
+{% block body %}
+<h1>New Theme</h1>
+
+{% include "themes/form.html" %}
+
+{% endblock %}

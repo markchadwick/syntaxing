@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+
+{% block body %}
+<h2>All Themes</h2>
+
+List of Themes:
+<ul>
+    {% for theme in themes %}
+        <li>
+            <a href="{% url views.themes.edit theme.key.id %}">{{ theme.name|escape }}</a>
+            - created {{themed.created|date:"Y/m/d H:i:s"}} by {{ theme.author }}
+    {% endfor %}
+</ul>
+
+<a href="{% url views.themes.new %}">Create new theme</a>
+
+{% endblock %}
