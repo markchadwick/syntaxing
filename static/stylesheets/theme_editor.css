@@ -9,7 +9,7 @@
 }
 
 #theme_editor #editor {
-    margin:         0 300px 0 0;
+    margin:         0 195px 0 0;
     padding:        3px;
 }
 
@@ -22,6 +22,6 @@
 }
 
 #theme_editor #styles {
-    width:          300px;
+    width:          195px;
     float:          right;
 }

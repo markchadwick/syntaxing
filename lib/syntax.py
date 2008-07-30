@@ -38,8 +38,8 @@ import sys
 
 # Function Definition
 def say_hello():
-print "Hello World"
-print "unclosed string
+    print "Hello World"
+    print "unclosed string
 
 # Class Definition
 class Greeting:
