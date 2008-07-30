@@ -32,9 +32,6 @@ def edit(request, theme_id):
     """
     user = users.GetCurrentUser()
 
-    if user is None:
-        return http.HttpResponseForbidden('You must be signed in to add or edit a gift')
-
     theme = None
     
     if theme_id:
