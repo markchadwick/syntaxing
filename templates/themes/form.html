@@ -9,10 +9,5 @@
     </div><!-- #editor -->
 </div><!-- #theme_editor -->
 
-{% for token_type in token_types %}
-    {% ifequal token_type "background" %}
-        <input type="hidden" id="{{ token_type }}" name="{{ token_type }}" value="#fffffff" class="token_style"/>
-    {% else %}
-        <input type="hidden" id="{{ token_type }}" name="{{ token_type }}" value="#000000" class="token_style"/>
-    {% endifequal %}
-{% endfor %}
+<hr/>
+{{ form.as_p }}

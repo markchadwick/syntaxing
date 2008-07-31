@@ -4,7 +4,7 @@ $(document).ready(function() {
     var background=false;
 
     function get_form_element(id) {
-        var element = $('#' + id);
+        var element = $('#id_' + id);
         if(element.length > 0) {
             return element[0];
         } else {
@@ -14,6 +14,7 @@ $(document).ready(function() {
 
     var f = $.farbtastic('#colorpicker', function(color) {
         var key = "color";
+        
         if(background) {
             key = "background";
         }
@@ -65,8 +66,11 @@ $(document).ready(function() {
     });
     
     
+    /*
+     * TODO: `input:text` is a terrible selector
+     */
     function reload_theme() {
-        $('.token_style').each(function(i, el) {
+        $('input:text').each(function(i, el) {
             var name = el.name;
             if(name == "background") {
                 $('.background').css('background', el.value);

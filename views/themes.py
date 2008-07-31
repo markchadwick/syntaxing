@@ -8,10 +8,11 @@ from google.appengine.ext import db
 from google.appengine.api import users
 from google.appengine.ext.db import djangoforms
 
-from lib.syntax import tokenize, lexers, SNIPPETS
+from lib.syntax import tokenize, lexers
+from lib.syntax.snippets import python
 
 from views import respond
-from models.theme import Theme, TOKEN_TYPES
+from models.theme import Theme
 
 # ------------------------------------------------------------------------------
 # View Methods
@@ -22,8 +23,7 @@ def list(request):
     themes = db.GqlQuery('SELECT * FROM Theme ORDER BY created DESC')
     
     return respond(request, user, 'themes/list', {
-        'themes': themes,
-        'code'  : SNIPPETS['python']
+        'themes': themes
     })
 
 def edit(request, theme_id):
@@ -47,8 +47,7 @@ def edit(request, theme_id):
         return respond(request, user, 'themes/new', {
             'form':         form,
             'theme':        theme,
-            'token_types':  TOKEN_TYPES,
-            'code':         tokenize(SNIPPETS['python'])
+            'code':         tokenize(python)
         })
 
     errors = form.errors
@@ -73,7 +72,7 @@ def edit(request, theme_id):
 
 def new(request):
     return edit(request, None)
-    
+    fffffffff
 # ------------------------------------------------------------------------------
 # Forms
 # ------------------------------------------------------------------------------
