@@ -65,10 +65,50 @@ $(document).ready(function() {
         return false;
     });
     
+
+    ////////////////////////////////////////////////////////////////////////////
+    // Code Editing Link
     
-    /*
-     * TODO: `input:text` is a terrible selector
-     */
+    function _toggle_edit(event) {
+        var element = event.target;
+        
+        var code_view = $('#code_view')[0];
+        var code_edit = $('#code_edit')[0];
+        
+        if(code_edit.style.display == 'none') {
+            _enter_edit_code_mode(element, code_view, code_edit);
+        } else {
+            _enter_view_code_mode(element, code_view, code_edit);
+        }
+    }
+    
+    function _enter_edit_code_mode(element, code_view, code_edit) {
+        element.innerHTML = "Done";
+        
+        code_edit.style.display = 'block';
+        code_view.style.display = 'none';
+    }
+    
+    function _enter_view_code_mode(element, code_view, code_edit) {
+        element.innerHTML = "Edit Code";
+
+        code_edit.style.display = 'none';
+        code_view.style.display = 'block';
+        
+        $.post("/themes/tokenize", {
+            'language': $('#language')[0].value,
+            'code':     code_edit.value
+        }, function(data) {
+            code_view.innerHTML = data;
+            reload_theme();
+        });
+    }
+    
+    $('#editor #edit_link').click(_toggle_edit);
+    
+    ////////////////////////////////////////////////////////////////////////////
+    // Theme Loading
+
     function reload_theme() {
         $('input:text').each(function(i, el) {
             var name = el.name;
@@ -80,6 +120,5 @@ $(document).ready(function() {
         });
     }
     reload_theme();
-    
 });
 

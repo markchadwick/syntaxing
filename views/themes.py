@@ -8,7 +8,8 @@ from google.appengine.ext import db
 from google.appengine.api import users
 from google.appengine.ext.db import djangoforms
 
-from lib.syntax import tokenize, lexers
+from lib.syntax import lexers
+from lib.syntax import tokenize as tokenize_to_html
 from lib.syntax.snippets import python
 
 from views import respond
@@ -47,7 +48,8 @@ def edit(request, theme_id):
         return respond(request, user, 'themes/new', {
             'form':         form,
             'theme':        theme,
-            'code':         tokenize(python)
+            'code':         tokenize_to_html(python),
+            'raw_code':     python
         })
 
     errors = form.errors
@@ -72,7 +74,13 @@ def edit(request, theme_id):
 
 def new(request):
     return edit(request, None)
-    fffffffff
+
+def tokenize(request):
+    lang = request.POST.get('language')
+    code = request.POST.get('code')
+    
+    return http.HttpResponse(tokenize_to_html(code))
+
 # ------------------------------------------------------------------------------
 # Forms
 # ------------------------------------------------------------------------------
