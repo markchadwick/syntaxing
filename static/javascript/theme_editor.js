@@ -62,6 +62,8 @@ function _create_syntax_bindings() {
         console.log("Theming background");
         return false;
     });
+    
+    reload_theme();
 }
 
 ////////////////////////////////////////////////////////////////////////////////
@@ -123,7 +125,7 @@ $(document).ready(function() {
         }
     });
 
-    $('#editor #edit_link').click(_toggle_edit);
+    $('#edit_link').click(_toggle_edit);
     _create_syntax_bindings();
     reload_theme();
 });

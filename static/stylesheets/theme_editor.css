@@ -7,7 +7,6 @@
 #theme_editor #editor {
     background:     url(/static/images/editor/toolbar_right.png) no-repeat top right;
     width:          700px;
-    font-size:      9pt;
 }
 
 #theme_editor #title {
@@ -24,9 +23,12 @@
     padding:        0 0 26px 0;
 }
 
-#theme_editor #editor .background {
+#theme_editor #editor #body .background, #theme_editor #editor #body #code_edit {
+    border:         none;
+    
     white-space:    pre;
     line-height:    1.2em;
+    font-size:      9pt;
     font-family:    "Bitstream Vera Sans Mono", "Monaco", "Courier", monospace;
     font-weight:    normal;
     
