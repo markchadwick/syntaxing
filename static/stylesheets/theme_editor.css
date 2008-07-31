@@ -1,17 +1,27 @@
 #theme_editor {
-}
-
-#cursor {
-    border:         1px solid #000;
-    height:         10px;
-    width:          10px;
-    background:     #fff;
+    background:     #fff url(/static/images/editor/background_left.png) no-repeat bottom left;
+    padding:        0 0 52px 0;
+    margin:         0 0 26px 0;
 }
 
 #theme_editor #editor {
-    margin:         0 195px 0 0;
-    padding:        3px;
-    display:        block;
+    background:     url(/static/images/editor/toolbar_right.png) no-repeat top right;
+    width:          700px;
+    font-size:      9pt;
+}
+
+#theme_editor #title {
+    height:         19px;
+    background:     url(/static/images/editor/toolbar_left.png) no-repeat top left;
+    font-weight:    bold;
+    text-align:     center;
+    padding:        11px 0 0 0;
+}
+
+#theme_editor #editor #body {
+    background:     url(/static/images/editor/background_right.png) no-repeat bottom right;
+    margin:         0 -3px -52px 0;
+    padding:        0 0 26px 0;
 }
 
 #theme_editor #editor .background {
@@ -19,7 +29,9 @@
     line-height:    1.2em;
     font-family:    "Bitstream Vera Sans Mono", "Monaco", "Courier", monospace;
     font-weight:    normal;
-    padding:        0.8em;
+    
+    margin:         0 18px 0 18px;
+    padding:        1px 5px 10px 5px;
 }
 
 #theme_editor #styles {

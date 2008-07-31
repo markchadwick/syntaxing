@@ -1,14 +1,24 @@
+<a href="#" id="edit_link">Edit</a>
+
 <div id="theme_editor">
     <div id="styles">
         <div id="colorpicker"></div>
     </div><!-- #styles -->
 
+
     <div id="editor">
-        <a href="#" id="edit_link">Edit</a>
-        <textarea id="code_edit" style="display:none;" rows="30" cols="80">{{ raw_code|escape }}</textarea>
-        <div id="code_view" class="background">{{ code }}</div><!-- .background -->
+        <div id="title">Python</div>
+        <div id="body">
+            <textarea id="code_edit" style="display:none;" rows="30" cols="80">{{ raw_code|escape }}</textarea>
+            <div id="code_view" class="background">{{ code }}</div><!-- .background -->
+        </div><!-- #body -->
     </div><!-- #editor -->
 </div><!-- #theme_editor -->
+
+<p/>
+<p/>
+<p/>
+
 <input type="text" name="language" id="language" value="python"/>
 
 <hr/>
