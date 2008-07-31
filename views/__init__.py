@@ -16,27 +16,27 @@ import os
 
 from google.appengine.api import users
 
-from google.appengine.ext import db
-from google.appengine.ext.db import djangoforms
+#from google.appengine.ext import db
+#from google.appengine.ext.db import djangoforms
 
-import django
-from django import http
+#import django
+#from django import http
 from django import shortcuts
 
-class Gift(db.Model):
-  name = db.StringProperty(required=True)
-  giver = db.UserProperty()
-  recipient = db.StringProperty(required=True)
+#class Gift(db.Model):
+#  name = db.StringProperty(required=True)
+#  giver = db.UserProperty()
+#  recipient = db.StringProperty(required=True)
 
-  description = db.TextProperty()
-  url = db.URLProperty()
-  created = db.DateTimeProperty(auto_now_add=True)
-  modified = db.DateTimeProperty(auto_now=True)
+#  description = db.TextProperty()
+#  url = db.URLProperty()
+#  created = db.DateTimeProperty(auto_now_add=True)
+#  modified = db.DateTimeProperty(auto_now=True)
 
-class GiftForm(djangoforms.ModelForm):
-  class Meta:
-    model = Gift
-    exclude = ['giver', 'created', 'modified']
+#class GiftForm(djangoforms.ModelForm):
+#  class Meta:
+#    model = Gift
+#    exclude = ['giver', 'created', 'modified']
 
 def respond(request, user, template, params=None):
   """Helper to render a response, passing standard stuff to the response.
@@ -68,45 +68,45 @@ def respond(request, user, template, params=None):
   return shortcuts.render_to_response(template, params)
 
 
-def index(request):
-  """Request / -- show all gifts."""
-  user = users.GetCurrentUser()
-  gifts = db.GqlQuery('SELECT * FROM Gift ORDER BY created DESC')
-  return respond(request, user, 'list', {'gifts': gifts})
+#def index(request):
+#  """Request / -- show all gifts."""
+#  user = users.GetCurrentUser()
+#  gifts = db.GqlQuery('SELECT * FROM Gift ORDER BY created DESC')
+#  return respond(request, user, 'list', {'gifts': gifts})
 
-def edit(request, gift_id):
-  """Create or edit a gift.  GET shows a blank form, POST processes it."""
-  user = users.GetCurrentUser()
-  if user is None:
-    return http.HttpResponseForbidden('You must be signed in to add or edit a gift')
+#def edit(request, gift_id):
+#  """Create or edit a gift.  GET shows a blank form, POST processes it."""
+#  user = users.GetCurrentUser()
+#  if user is None:
+#    return http.HttpResponseForbidden('You must be signed in to add or edit a gift')
 
-  gift = None
-  if gift_id:
-    gift = Gift.get(db.Key.from_path(Gift.kind(), int(gift_id)))
-    if gift is None:
-      return http.HttpResponseNotFound('No gift exists with that key (%r)' %
-                                       gift_id)
+#  gift = None
+#  if gift_id:
+#    gift = Gift.get(db.Key.from_path(Gift.kind(), int(gift_id)))
+#    if gift is None:
+#      return http.HttpResponseNotFound('No gift exists with that key (%r)' %
+#                                       gift_id)
 
-  form = GiftForm(data=request.POST or None, instance=gift)
+#  form = GiftForm(data=request.POST or None, instance=gift)
 
-  if not request.POST:
-    return respond(request, user, 'gift', {'form': form, 'gift': gift})
+#  if not request.POST:
+#    return respond(request, user, 'gift', {'form': form, 'gift': gift})
 
-  errors = form.errors
-  if not errors:
-    try:
-      gift = form.save(commit=False)
-    except ValueError, err:
-      errors['__all__'] = unicode(err)
-  if errors:
-    return respond(request, user, 'gift', {'form': form, 'gift': gift})
+#  errors = form.errors
+#  if not errors:
+#    try:
+#      gift = form.save(commit=False)
+#    except ValueError, err:
+#      errors['__all__'] = unicode(err)
+#  if errors:
+#    return respond(request, user, 'gift', {'form': form, 'gift': gift})
 
-  if not gift.giver:
-    gift.giver = user
-  gift.put()
+#  if not gift.giver:
+#    gift.giver = user
+#  gift.put()
 
-  return http.HttpResponseRedirect('/')
+#  return http.HttpResponseRedirect('/')
 
-def new(request):
-  """Create a gift.  GET shows a blank form, POST processes it."""
-  return edit(request, None)
+#def new(request):
+#  """Create a gift.  GET shows a blank form, POST processes it."""
+#  return edit(request, None)

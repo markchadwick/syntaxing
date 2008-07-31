@@ -15,4 +15,5 @@ urlpatterns = patterns('',
     (r'^$',             list),
     (r'^new$',          new),
     (r'^edit/(\d+)$',   edit),
+    (r'^tokenize$',     tokenize),
 )

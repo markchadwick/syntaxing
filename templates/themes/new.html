@@ -10,6 +10,10 @@
 {% block body %}
 <h1>New Theme</h1>
 
-{% include "themes/form.html" %}
+<form action="{% url views.themes.edit theme.key.id %}" method="post">
+    {% include "themes/form.html" %}
+    
+    <p><input type="submit" value="Create Theme"/></p>
+</form>
 
 {% endblock %}
