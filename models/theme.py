@@ -7,15 +7,31 @@ class Theme(db.Model):
     created   = db.DateTimeProperty(auto_now_add=True)
     modified  = db.DateTimeProperty(auto_now=True)
 
-
     background  = db.StringProperty("Background",   default="#ffffff")
     
-    text        = db.StringProperty("Text",         default="#000000")
-    comment     = db.StringProperty("Comment",      default="#000000")
-    error       = db.StringProperty("Error",        default="#000000")
-    other       = db.StringProperty("Other",        default="#000000")
+    #
+    # Basic Definitions
+    #
+    text_fg         = db.StringProperty("Text Foreground",      default="#000000")
+    comment_fg      = db.StringProperty("Comment Foreground",   default="#000000")
+    keyword_fg      = db.StringProperty("Keyword Foreground",   default="#000000")
     
-    keyword     = db.StringProperty("Keyword",      default="#000000")
-    string      = db.StringProperty("String",       default="#000000")
+    #
+    # Natives
+    #
+    number_fg       = db.StringProperty("Number Foreground",    default="#000000")
+    string_fg       = db.StringProperty("String Foreground",    default="#000000")
+
+    #
+    # Language
+    #
+    class_fg        = db.StringProperty("Class Foreground",     default="#000000")
+    class_it        = db.BooleanProperty("Class Italic",        default=False)
+    class_bl        = db.BooleanProperty("Class Bold",          default=False)
     
-    function    = db.StringProperty("Function",     default="#000000")
+    function_fg     = db.StringProperty("Function Foreground",  default="#000000")
+    builtin_fg      = db.StringProperty("Builtin Foreground",   default="#000000")
+    namespace_fg    = db.StringProperty("Namespace Foreground", default="#000000")
+    pseudo_fg       = db.StringProperty("Pseudo Foreground",    default="#000000")
+    decorator_fg    = db.StringProperty("Decorator Foreground", default="#000000")
+    

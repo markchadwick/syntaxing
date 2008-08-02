@@ -3,6 +3,7 @@ from pygments.lexers import *
 
 from pygments.formatters import HtmlFormatter
 from pygments.lexers._mapping import LEXERS
+from pygments.token import Token
 
 LANGUAGES = {
     'python':   PythonLexer,
@@ -10,7 +11,33 @@ LANGUAGES = {
 
 class SyntaxingHTMLFormatter(HtmlFormatter):
     def _get_css_class(self, ttype):
-        return '_'.join(str(ttype).split('.')[1:]).lower().replace('literal_', '')
+        try:
+            return {
+                Token.Text:             'text',
+                Token.Comment:          'comment',
+                Token.Keyword:          'keyword',
+                
+                Token.Punctuation:      'text',
+                Token.Name:             'text',
+                Token.Operator:         'text',
+            
+                Token.Literal.String:           'string',
+                Token.Literal.String.Interpol:  'string',
+
+                Token.Literal.Number.Float:     'number',
+                
+
+                Token.Name.Class:       'class',
+                Token.Name.Builtin:     'builtin',
+                Token.Name.Function:    'function',
+                Token.Name.Namespace:   'namespace',
+                
+                Token.Name.Builtin.Pseudo:  'pseudo',
+                Token.Name.Decorator:       'decorator',
+            }[ttype]
+            
+        except KeyError:
+            return 'text'
 
 def lexers():
     lexers = []

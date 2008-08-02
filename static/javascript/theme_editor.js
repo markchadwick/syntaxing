@@ -15,16 +15,32 @@ function get_form_element(id) {
     }
 }
 
+function move_color_picker_to(element) {
+    var picker = $('#styles')
+    
+    var top = element.offsetTop + (element.offsetHeight / 2);
+    var left = element.offsetLeft + (element.offsetWidth / 2);
+    
+    // Width of picker is 260px
+    left -= (260 / 2);
+    
+    picker.css('display', 'block');
+    picker.css('top', top);
+    picker.css('left', left);
+}
+
 function set_active_element(element, name) {
-    if(current_element) {
-        current_element.style.border = null;
-    }
     current_element = element;
     
     form_element = get_form_element(name);
     if(form_element) {
         color_picker.setColor(form_element.value);
     }
+    
+    var init_caps = name.substring(0, 1).toUpperCase() + name.substring(1, name.length);
+    $('#active_style').html(init_caps);
+    
+    move_color_picker_to(element);
 }
 
 function reload_theme() {
@@ -46,8 +62,6 @@ function _create_syntax_bindings() {
         current_style = class_name;
         background = false;
         
-        console.log("Themeing", class_name);
-        
         set_active_element(target, class_name);
         
         return false;
@@ -58,8 +72,6 @@ function _create_syntax_bindings() {
         background = true;
         
         set_active_element(e.target, "background");
-        
-        console.log("Theming background");
         return false;
     });
     
@@ -125,8 +137,15 @@ $(document).ready(function() {
         }
     });
 
+    $('#close').click(function(e) {
+        $('#styles').css('display', 'none');
+    });
+    
     $('#edit_link').click(_toggle_edit);
     _create_syntax_bindings();
     reload_theme();
 });
 
+//$(document).click(function(e) {
+//    $('#styles').css('display', 'none');
+//});

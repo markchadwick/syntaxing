@@ -1,7 +1,7 @@
 #theme_editor {
     background:     #fff url(/static/images/editor/background_left.png) no-repeat bottom left;
     padding:        0 0 52px 0;
-    margin:         0 0 26px 0;
+    margin:         0 0 26px 6em;
 }
 
 #theme_editor #editor {
@@ -36,7 +36,44 @@
     padding:        1px 5px 10px 5px;
 }
 
+/*
+ * Color Picker
+ */
+
 #theme_editor #styles {
     width:          195px;
+    position:       absolute;
+    background:     url(/static/images/editor/color_picker.png) no-repeat top left;
+    height:         336px;
+    width:          260px;
+    
+    display:    none;
+}
+#theme_editor #styles #close {
     float:          right;
+    width:          20px;
+    height:         20px;
+    margin:         29px 21px 0 0;
+}
+#theme_editor #styles #close:hover {
+    cursor: pointer;
+    cursor: hand;
+}
+
+#theme_editor #styles #active_style {
+    padding:        30px 0 0 20px;
+    font-size:      12pt;
+    font-weight:    bold;
+    color:          #666;
+}
+
+#theme_editor #styles #colorpicker {
+    margin:         10px 0 0 33px;
+}
+
+#theme_editor #styles #fontopts {
+    list-style-type:    none;
+    margin:             0 0 0 20px;
+    padding:            0;
+    font-size:          90%;
 }
