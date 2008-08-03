@@ -1,17 +1,22 @@
 {% extends "base.html" %}
 
 {% block body %}
-<h2>All Themes</h2>
-
-List of Themes:
-<ul>
+<a href="{% url views.themes.new %}">Create new theme</a>
+<ul class="theme_list">
     {% for theme in themes %}
-        <li>
-            <a href="{% url views.themes.edit theme.key.id %}">{{ theme.name|escape }}</a>
-            - created {{themed.created|date:"Y/m/d H:i:s"}} by {{ theme.author }}
+        <li class="theme">
+            <div class="thumbnail" style="{{ theme.thumbnail_style }}">
+                {% for field in theme.thumbnail_fields %}
+                    <div class="field" style="background:{{ field }}">&nbsp;</div>
+                {% endfor %}
+            </div>
+            
+            <a href="{% url views.themes.edit theme.key.id %}" class="title">{{ theme.name|escape }}</a>
+            <div class="about">
+                Created {{theme.created|date:"Y/m/d H:i"}} by {{ theme.author }}
+            </div>
+        </li>
     {% endfor %}
 </ul>
-
-<a href="{% url views.themes.new %}">Create new theme</a>
 
 {% endblock %}
