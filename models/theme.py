@@ -7,6 +7,8 @@ class Theme(db.Model):
     created   = db.DateTimeProperty(auto_now_add=True)
     modified  = db.DateTimeProperty(auto_now=True)
 
+    description  = db.TextProperty("Description")
+
     background_bg  = db.StringProperty("Background",   default="#ffffff")
     
     #
