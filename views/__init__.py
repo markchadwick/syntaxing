@@ -15,28 +15,8 @@
 import os
 
 from google.appengine.api import users
-
-#from google.appengine.ext import db
-#from google.appengine.ext.db import djangoforms
-
-#import django
-#from django import http
 from django import shortcuts
 
-#class Gift(db.Model):
-#  name = db.StringProperty(required=True)
-#  giver = db.UserProperty()
-#  recipient = db.StringProperty(required=True)
-
-#  description = db.TextProperty()
-#  url = db.URLProperty()
-#  created = db.DateTimeProperty(auto_now_add=True)
-#  modified = db.DateTimeProperty(auto_now=True)
-
-#class GiftForm(djangoforms.ModelForm):
-#  class Meta:
-#    model = Gift
-#    exclude = ['giver', 'created', 'modified']
 
 def respond(request, user, template, params=None):
   """Helper to render a response, passing standard stuff to the response.

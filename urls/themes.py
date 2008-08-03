@@ -13,7 +13,10 @@ from views.themes import *
 
 urlpatterns = patterns('',
     (r'^$',             list),
+    (r'^(\d+)$',        get),
     (r'^new$',          new),
     (r'^edit/(\d+)$',   edit),
     (r'^tokenize$',     tokenize),
+    
+    (r'^(?P<theme_id>\d+)/theme.css',   css),
 )
