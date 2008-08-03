@@ -7,7 +7,7 @@ class Theme(db.Model):
     created   = db.DateTimeProperty(auto_now_add=True)
     modified  = db.DateTimeProperty(auto_now=True)
 
-    background  = db.StringProperty("Background",   default="#ffffff")
+    background_bg  = db.StringProperty("Background",   default="#ffffff")
     
     #
     # Basic Definitions
@@ -30,6 +30,9 @@ class Theme(db.Model):
     class_bl        = db.BooleanProperty("Class Bold",          default=False)
     
     function_fg     = db.StringProperty("Function Foreground",  default="#000000")
+    function_it     = db.BooleanProperty("Function Italic",     default=False)
+    function_bl     = db.BooleanProperty("Function Italic",     default=False)
+    
     builtin_fg      = db.StringProperty("Builtin Foreground",   default="#000000")
     namespace_fg    = db.StringProperty("Namespace Foreground", default="#000000")
     pseudo_fg       = db.StringProperty("Pseudo Foreground",    default="#000000")

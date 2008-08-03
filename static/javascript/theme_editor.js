@@ -1,13 +1,13 @@
 var current_style="";
+var theming_postfix="fg";
 var current_element;
 var color_picker;
-var background=false;
 
 ////////////////////////////////////////////////////////////////////////////////
 // Utility Methods
 
 function get_form_element(id) {
-    var element = $('#id_' + id);
+    var element = $('#id_' + id +"_"+ theming_postfix);
     if(element.length > 0) {
         return element[0];
     } else {
@@ -31,8 +31,11 @@ function move_color_picker_to(element) {
 
 function set_active_element(element, name) {
     current_element = element;
+    form_element  = get_form_element(name);
     
-    form_element = get_form_element(name);
+    var italic_el = $('#id_' + name + '_it')[0];
+    var bold_el   = $('#id_' + name + '_bl')[0];
+    
     if(form_element) {
         color_picker.setColor(form_element.value);
     }
@@ -40,38 +43,90 @@ function set_active_element(element, name) {
     var init_caps = name.substring(0, 1).toUpperCase() + name.substring(1, name.length);
     $('#active_style').html(init_caps);
     
+    /*
+     * Setup Italic
+     */
+    $("#cp_it").unbind().click(function(e) {
+        if(e.currentTarget.checked) {
+            $('.' + name).css('font-style', 'italic');
+//            $('#id_' + name + '_it')[0].checked = true;
+        } else {
+            $('.' + name).css('font-style', 'normal');
+//            $('#id_' + name + '_it')[0].checked = false;
+        }
+    });
+    if(italic_el) {
+        $('#cp_it')[0].checked = italic_el.checked;
+    }
+    
+    /*
+     * Setup Bold
+     */
+    $("#cp_bl").unbind().click(function(e) {
+        if(e.currentTarget.checked) {
+            $('.' + name).css('font-weight', 'bold');
+            $('#id_' + name + '_bl')[0].checked = true;
+        } else {
+            $('.' + name).css('font-weight', 'normal');
+            $('#id_' + name + '_bl')[0].checked = false;
+        }
+    });
+    if(bold_el) {
+        $('#cp_bl')[0].checked = bold_el.checked;
+    }
+    
     move_color_picker_to(element);
 }
 
 function reload_theme() {
-    $('input:text').each(function(i, el) {
+    $('input').each(function(i, el) {
         var name = el.name;
-        if(name == "background") {
-            $('.background').css('background', el.value);
-        } else {
-            $('.' + name).css('color', el.value);
-        }
+        
+        var prefix_length = name.length-3;
+        var postfix = name.substring(prefix_length);
+        name = name.substring(0, prefix_length);
+
+            var selector = $("." + name);
+            switch(postfix) {
+                case '_fg':
+                    selector.css('color', el.value);
+                    break;
+                    
+                case '_bg':
+                    selector.css('background', el.value);
+                    break;
+                    
+                case '_it':
+                    if(el.checked) {
+                        selector.css('font-style', 'italic');
+                    }
+                    break;
+                    
+                case '_bl':
+                    if(el.checked) {
+                        selector.css('font-weight', 'bold');
+                    }
+                    break;
+            }
     });
 }
 
 function _create_syntax_bindings() {
-    $('span').click(function(e) {
+    $('span, .background').click(function(e) {
         var target = e.currentTarget;
         var class_name = target.className;
+        
+        if(class_name == "background") {
+            theming_postfix="bg";
+        } else {
+            theming_postfix="fg";
+        }
         
         current_style = class_name;
         background = false;
         
         set_active_element(target, class_name);
         
-        return false;
-    });
-    
-    $('.background').click(function(e) {
-        current_style = 'background';
-        background = true;
-        
-        set_active_element(e.target, "background");
         return false;
     });
     
@@ -121,10 +176,15 @@ function _enter_view_code_mode(element, code_view, code_edit) {
 
 $(document).ready(function() {
     color_picker = $.farbtastic('#colorpicker', function(color) {
-        var key = "color";
-        
-        if(background) {
-            key = "background";
+        var key;
+        switch(theming_postfix) {
+            case 'bg':
+                key = "background";
+                break;
+            
+            case 'fg':
+                key = "color";
+                break;
         }
         
         if(current_style != "") {
