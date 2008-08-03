@@ -123,6 +123,33 @@ def css(request, theme_id):
     response['Content-Type'] = "text/css; charset=utf-8"
     return response
 
+def vim(request, theme_id):
+    theme = Theme.get(db.Key.from_path(Theme.kind(), int(theme_id)))
+    
+    response = HttpResponse(loader.render_to_string('themes/representations/theme.vim', {
+        'theme': theme
+    }))
+    response['Content-Type'] = "text/plain; charset=utf-8"
+    return response
+    
+def editra(request, theme_id):
+    theme = Theme.get(db.Key.from_path(Theme.kind(), int(theme_id)))
+    
+    response = HttpResponse(loader.render_to_string('themes/representations/theme.ess', {
+        'theme': theme
+    }))
+    response['Content-Type'] = "text/plain; charset=utf-8"
+    return response
+    
+def textmate(request, theme_id):
+    theme = Theme.get(db.Key.from_path(Theme.kind(), int(theme_id)))
+    
+    response = HttpResponse(loader.render_to_string('themes/representations/theme.tmTheme', {
+        'theme': theme
+    }))
+    response['Content-Type'] = "text/plain; charset=utf-8"
+    return response
+
 # ------------------------------------------------------------------------------
 # Forms
 # ------------------------------------------------------------------------------

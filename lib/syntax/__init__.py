@@ -9,6 +9,9 @@ LANGUAGES = {
     'python':   PythonLexer,
 }
 
+#
+# This is a comment
+#
 class SyntaxingHTMLFormatter(HtmlFormatter):
     def _get_css_class(self, ttype):
         try:

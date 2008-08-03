@@ -33,7 +33,7 @@
 }
 
 #code_view .class {
-    color:          {{ theme.class_fg }}
+    color:          {{ theme.class_fg }};
     {% if theme.class_it %}font-style:italic;{% endif %}
     {% if theme.class_bl %}font-weight:bold;{% endif %}
 }

@@ -13,7 +13,7 @@
             
             <a href="{% url views.themes.get theme.key.id %}" class="title">{{ theme.name|escape }}</a>
             <div class="about">
-                Created {{theme.created|date:"Y/m/d H:i"}} by {{ theme.author }}
+                Created {{theme.created|date:"Y/m/d H:i"}} by {{ theme.author.nickname }}
             </div>
         </li>
     {% endfor %}
