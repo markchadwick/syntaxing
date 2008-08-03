@@ -49,10 +49,14 @@ function set_active_element(element, name) {
     $("#cp_it").unbind().click(function(e) {
         if(e.currentTarget.checked) {
             $('.' + name).css('font-style', 'italic');
-//            $('#id_' + name + '_it')[0].checked = true;
+            $('#id_' + name + '_it').each(function(e) {
+                e.checked = true;
+            });
         } else {
             $('.' + name).css('font-style', 'normal');
-//            $('#id_' + name + '_it')[0].checked = false;
+            $('#id_' + name + '_it').each(function(e) {
+                e.checked = false;
+            });
         }
     });
     if(italic_el) {
@@ -65,14 +69,20 @@ function set_active_element(element, name) {
     $("#cp_bl").unbind().click(function(e) {
         if(e.currentTarget.checked) {
             $('.' + name).css('font-weight', 'bold');
-            $('#id_' + name + '_bl')[0].checked = true;
+            $('#id_' + name + '_bl').each(function(e) {
+                e.checked = true;
+            });
         } else {
             $('.' + name).css('font-weight', 'normal');
-            $('#id_' + name + '_bl')[0].checked = false;
+            $('#id_' + name + '_bl').each(function(e) {
+                e.checked = false;
+            });
         }
     });
     if(bold_el) {
-        $('#cp_bl')[0].checked = bold_el.checked;
+        $('#cp_bl').each(function(e) {
+            e.checked = bold_el.checked
+        });
     }
     
     move_color_picker_to(element);
