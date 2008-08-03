@@ -1,0 +1,70 @@
+.background {
+    background:     {{ theme.background_bg }};
+}
+
+#code_view .text {
+    color:          {{ theme.text_fg }};
+    {% if theme.text_it %}font-style:italic;{% endif %}
+    {% if theme.text_bl %}font-weight:bold;{% endif %}
+}
+
+#code_view .comment {
+    color:          {{ theme.comment_fg }};
+    {% if theme.comment_it %}font-style:italic;{% endif %}
+    {% if theme.comment_bl %}font-weight:bold;{% endif %}
+}
+
+#code_view .keyword {
+    color:          {{ theme.keyword_fg }};
+    {% if theme.keyword_it %}font-style:italic;{% endif %}
+    {% if theme.keyword_bl %}font-weight:bold;{% endif %}
+}
+
+#code_view .string {
+    color:          {{ theme.string_fg }};
+    {% if theme.string_it %}font-style:italic;{% endif %}
+    {% if theme.string_bl %}font-weight:bold;{% endif %}
+}
+
+#code_view .number {
+    color:          {{ theme.number_fg }};
+    {% if theme.number_it %}font-style:italic;{% endif %}
+    {% if theme.number_bl %}font-weight:bold;{% endif %}
+}
+
+#code_view .class {
+    color:          {{ theme.class_fg }}
+    {% if theme.class_it %}font-style:italic;{% endif %}
+    {% if theme.class_bl %}font-weight:bold;{% endif %}
+}
+
+#code_view .builtin {
+    color:          {{ theme.builtin_fg }};
+    {% if theme.builtin_it %}font-style:italic;{% endif %}
+    {% if theme.builtin_bl %}font-weight:bold;{% endif %}
+}
+
+#code_view .function {
+    color:          {{ theme.function_fg }};
+    {% if theme.function_it %}font-style:italic;{% endif %}
+    {% if theme.function_bl %}font-weight:bold;{% endif %}
+}
+
+#code_view .namespace {
+    color:          {{ theme.namespace_fg }};
+    {% if theme.namespace_it %}font-style:italic;{% endif %}
+    {% if theme.namespace_bl %}font-weight:bold;{% endif %}
+}
+
+#code_view .pseudo {
+    color:          {{ theme.pseudo_fg }};
+    {% if theme.pseudo_it %}font-style:italic;{% endif %}
+    {% if theme.pseudo_bl %}font-weight:bold;{% endif %}
+}
+
+#code_view .decorator {
+    color:          {{ theme.decorator_fg }};
+    {% if theme.decorator_it %}font-style:italic;{% endif %}
+    {% if theme.decorator_bl %}font-weight:bold;{% endif %}
+}
+

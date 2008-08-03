@@ -64,3 +64,19 @@ class Theme(db.Model):
     decorator_it    = db.BooleanProperty("Decorator Italic",    default=False)
     decorator_bl    = db.BooleanProperty("Decorator Bold",      default=False)    
     
+
+    def thumbnail_style(self):
+        return "background:%s;color:%s" % (self.background_bg, self.text_fg)
+    
+    def thumbnail_fields(self):
+        return [
+            self.text_fg,
+            self.comment_fg,
+            self.keyword_fg,
+            self.number_fg,
+            self.string_fg,
+            self.class_fg,
+            self.function_fg,
+            self.builtin_fg,
+            self.namespace_fg,
+        ]

@@ -1,4 +1,8 @@
-python = """#!/usr/bin/env python
+SNIPPETS = {
+    #
+    # Python
+    #
+    'python':   """#!/usr/bin/env python
 
 import os
 import sys
@@ -18,4 +22,15 @@ def main(args):
 if __name__ == '__main__':
     sys.exit(main(sys.argv))
 
-"""
+""",
+
+    #
+    # C
+    #
+    'c':        """include <stdio.h>
+
+int main(int argc, char *argv) {
+    printf("Hello world!\n");
+}""",
+
+}

@@ -9,6 +9,15 @@
   </head>
   <body>
     <div id="body">
+        <div>
+            {%if user %}
+                <b>{{user.nickname}}</b>
+                {%if is_admin%} | <a href="/_ah/admin">Admin</a>{%endif%}
+                {%if sign_out%} | <a href="{{sign_out}}">Sign out</a>{%endif%}
+            {% else %}
+                {%if sign_in%}<a href="{{sign_in}}">Sign in</a>{%endif%}
+            {%endif%}
+        </div>
         <div id="header">
             <a href="/"><img src="/static/images/syntaxing.png"/></a>
         </div><!-- #header -->

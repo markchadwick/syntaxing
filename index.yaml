@@ -16,7 +16,7 @@ indexes:
   - name: created
     direction: desc
 
-# Used 12 times in query history.
+# Used 91 times in query history.
 - kind: Theme
   properties:
   - name: created

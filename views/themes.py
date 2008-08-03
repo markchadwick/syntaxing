@@ -3,6 +3,9 @@
 # ------------------------------------------------------------------------------
 
 from django import http
+from django import shortcuts
+from django.template import loader
+from django.http import HttpResponse
 
 from google.appengine.ext import db
 from google.appengine.api import users
@@ -10,7 +13,7 @@ from google.appengine.ext.db import djangoforms
 
 from lib.syntax import lexers
 from lib.syntax import tokenize as tokenize_to_html
-from lib.syntax.snippets import python
+from lib.syntax.snippets import SNIPPETS
 
 from views import respond
 from models.theme import Theme
@@ -24,7 +27,20 @@ def list(request):
     themes = db.GqlQuery('SELECT * FROM Theme ORDER BY created DESC')
     
     return respond(request, user, 'themes/list', {
-        'themes': themes
+        'themes':   themes,
+        'snippet':  tokenize_to_html(SNIPPETS['c']),
+        'user':     user
+    })
+
+def get(request, theme_id):
+    user = users.GetCurrentUser()
+    theme = Theme.get(db.Key.from_path(Theme.kind(), int(theme_id)))
+    lang = 'python'
+    
+    return respond(request, user, 'themes/theme', {
+        'user':     user,
+        'theme':    theme,
+        'code':     tokenize_to_html(SNIPPETS[lang])
     })
 
 def edit(request, theme_id):
@@ -32,10 +48,11 @@ def edit(request, theme_id):
     This is ripped out of Google's example.  This is ugly and I hate it.
     """
     user = users.GetCurrentUser()
-
     theme = None
-    
+    editing = False
+
     if theme_id:
+        editing = True
         theme = Theme.get(db.Key.from_path(Theme.kind(), int(theme_id)))
         
         if theme is None:
@@ -48,8 +65,8 @@ def edit(request, theme_id):
         return respond(request, user, 'themes/new', {
             'form':         form,
             'theme':        theme,
-            'code':         tokenize_to_html(python),
-            'raw_code':     python
+            'code':         tokenize_to_html(SNIPPETS['python']),
+            'raw_code':     SNIPPETS['python']
         })
 
     errors = form.errors
@@ -76,7 +93,16 @@ def thumbnail(request, id):
     pass
 
 def new(request):
-    return edit(request, None)
+    user = users.GetCurrentUser()
+    theme = None
+    form = ThemeForm(data=request.POST or None, instance=theme)
+    
+    return respond(request, user, 'themes/new', {
+        'form':         form,
+        'theme':        theme,
+        'code':         tokenize_to_html(SNIPPETS['python']),
+        'raw_code':     SNIPPETS['python']
+    })
 
 def tokenize(request):
     lang = request.POST.get('language')
@@ -85,10 +111,23 @@ def tokenize(request):
     return http.HttpResponse(tokenize_to_html(code))
 
 # ------------------------------------------------------------------------------
+# Theme Representations
+# ------------------------------------------------------------------------------
+
+def css(request, theme_id):
+    theme = Theme.get(db.Key.from_path(Theme.kind(), int(theme_id)))
+    
+    response = HttpResponse(loader.render_to_string('themes/representations/theme.css', {
+        'theme': theme
+    }))
+    response['Content-Type'] = "text/css; charset=utf-8"
+    return response
+
+# ------------------------------------------------------------------------------
 # Forms
 # ------------------------------------------------------------------------------
 
 class ThemeForm(djangoforms.ModelForm):
     class Meta:
         model = Theme
-        exclude = ['author', 'created', 'modified']
+        exclude = ['author', 'created', 'modified', 'name']

@@ -1,8 +1,6 @@
 body {
     line-height:    1.2em;
     font:           10pt Ariel, Sans-Serif;
-    margin:         0;
-    padding:        0;
 }
 
 a img {
@@ -22,4 +20,45 @@ body {
 #header {
     margin:         5px 0 0 0;
     height:         200px;
+}
+
+/*
+ * Theme list
+ */
+ul.theme_list {
+    list-style-type:    none;
+    margin:             10px 0 0 0;
+    padding:            0;
+}
+ul.theme_list li.theme {
+    border-top:         1px solid #eee;
+    height:             55px;
+    padding:            5px;
+}
+ul.theme_list li.theme .thumbnail {
+    height:             42px;
+    width:              42px;
+    float:              left;
+    margin:             0 10px 0 0;
+    padding:            5px;
+    overflow:           hidden;
+    border:             1px solid #ccc;
+}
+ul.theme_list li.theme .thumbnail .field {
+    width:              10px;
+    height:             10px;
+    margin:             2px;
+    padding:            0;
+    float:              left;
+}
+ul.theme_list li.theme a.title {
+    color:              #333;
+    font-size:          200%;
+    text-decoration:    none;
+}
+ul.theme_list li.theme a.title:hover {
+    text-decoration:    underline;
+}
+ul.theme_list li.theme div.about {
+    color:              #999;
 }

@@ -2,21 +2,15 @@
 # Imports
 # ------------------------------------------------------------------------------
 
-from django.conf.urls.defaults import *
+from django import http
+from google.appengine.api import users
 
-from views.themes import *
+from views import respond
 
 # ------------------------------------------------------------------------------
-# Globals
+# View Methods
 # ------------------------------------------------------------------------------
 
-
-urlpatterns = patterns('',
-    (r'^$',             list),
-    (r'^(\d+)$',        get),
-    (r'^new$',          new),
-    (r'^edit/(\d+)$',   edit),
-    (r'^tokenize$',     tokenize),
-    
-    (r'^(?P<theme_id>\d+)/theme.css',   css),
-)
+def index(request):
+    user = users.GetCurrentUser()
+    return respond(request, user, 'home/index')

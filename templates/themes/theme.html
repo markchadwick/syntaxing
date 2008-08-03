@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+{% block head %}
+    <link type="text/css" rel="stylesheet" href="/static/stylesheets/theme_editor.css"/>
+    <link type="text/css" rel="stylesheet" href="/themes/{{ theme.key.id }}/theme.css"/>
+{% endblock %}
+
+{% block body %}
+<h1>{{ theme.name }}</h1>
+
+<div id="theme_editor">
+    <div id="editor">
+        <div id="title">Python</div>
+        <div id="body">
+            <textarea id="code_edit" style="display:none;" rows="20" cols="80">{{ raw_code|escape }}</textarea>
+            <div id="code_view" class="background">{{ code }}</div><!-- .background -->
+        </div><!-- #body -->
+    </div><!-- #editor -->
+</div><!-- #theme_editor -->
+
+{% endblock %}
