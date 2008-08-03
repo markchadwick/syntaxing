@@ -1,4 +1,25 @@
 body {
     line-height:    1.2em;
     font:           10pt Ariel, Sans-Serif;
+    margin:         0;
+    padding:        0;
+}
+
+a img {
+    border:         none;
+}
+
+body {
+    text-align:     center;
+}
+
+#body {
+    width:          750px;
+    margin:         0 auto;
+    text-align:     left;
+}
+
+#header {
+    margin:         5px 0 0 0;
+    height:         200px;
 }

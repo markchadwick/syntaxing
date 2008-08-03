@@ -1,39 +1,37 @@
 #theme_editor {
-    background:     #fff url(/static/images/editor/background_left.png) no-repeat bottom left;
-    padding:        0 0 52px 0;
-    margin:         0 0 26px 6em;
+    background:     #fff url(/static/images/editor/background.png) no-repeat bottom left;
+    width:          747px;
+    padding:        0 0 26px 0;
 }
 
 #theme_editor #editor {
     background:     url(/static/images/editor/toolbar_right.png) no-repeat top right;
-    width:          700px;
+    padding:        0 20px 0 0;
 }
 
 #theme_editor #title {
-    height:         19px;
+    height:         18px;
     background:     url(/static/images/editor/toolbar_left.png) no-repeat top left;
     font-weight:    bold;
     text-align:     center;
-    padding:        11px 0 0 0;
+    padding:        12px 0 0 0;
+    margin:         0 0 -12px 0;
 }
 
 #theme_editor #editor #body {
-    background:     url(/static/images/editor/background_right.png) no-repeat bottom right;
-    margin:         0 -3px -52px 0;
-    padding:        0 0 26px 0;
+    margin:         0 0 0 17px;
+    width:          715px;
 }
 
 #theme_editor #editor #body .background, #theme_editor #editor #body #code_edit {
-    border:         none;
-    
+    font-size:      9pt;
     white-space:    pre;
     line-height:    1.2em;
-    font-size:      9pt;
     font-family:    "Bitstream Vera Sans Mono", "Monaco", "Courier", monospace;
     font-weight:    normal;
-    
-    margin:         0 18px 0 18px;
-    padding:        1px 5px 10px 5px;
+    padding:        0 3px 0 3px;
+    margin:         0;
+    width:          709px;
 }
 
 /*
@@ -47,7 +45,7 @@
     height:         336px;
     width:          260px;
     
-    display:    none;
+    display:        none;
 }
 #theme_editor #styles #close {
     float:          right;

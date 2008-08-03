@@ -49,18 +49,20 @@ function set_active_element(element, name) {
     $("#cp_it").unbind().click(function(e) {
         if(e.currentTarget.checked) {
             $('.' + name).css('font-style', 'italic');
-            $('#id_' + name + '_it').each(function(e) {
-                e.checked = true;
+            $('#id_' + name + '_it').each(function(i, el) {
+                el.checked = true;
             });
         } else {
             $('.' + name).css('font-style', 'normal');
-            $('#id_' + name + '_it').each(function(e) {
-                e.checked = false;
+            $('#id_' + name + '_it').each(function(i, el) {
+                el.checked = false;
             });
         }
     });
     if(italic_el) {
-        $('#cp_it')[0].checked = italic_el.checked;
+        $('#cp_it').each(function(i, el) {
+            el.checked = italic_el.checked;
+        });
     }
     
     /*
@@ -69,19 +71,19 @@ function set_active_element(element, name) {
     $("#cp_bl").unbind().click(function(e) {
         if(e.currentTarget.checked) {
             $('.' + name).css('font-weight', 'bold');
-            $('#id_' + name + '_bl').each(function(e) {
-                e.checked = true;
+            $('#id_' + name + '_bl').each(function(i, el) {
+                el.checked = true;
             });
         } else {
             $('.' + name).css('font-weight', 'normal');
-            $('#id_' + name + '_bl').each(function(e) {
-                e.checked = false;
+            $('#id_' + name + '_bl').each(function(i, el) {
+                el.checked = false;
             });
         }
     });
     if(bold_el) {
-        $('#cp_bl').each(function(e) {
-            e.checked = bold_el.checked
+        $('#cp_bl').each(function(i, el) {
+            el.checked = bold_el.checked
         });
     }
     
@@ -157,6 +159,8 @@ function _toggle_edit(event) {
     } else {
         _enter_view_code_mode(element, code_view, code_edit);
     }
+    
+    return false;
 }
 
 function _enter_edit_code_mode(element, code_view, code_edit) {

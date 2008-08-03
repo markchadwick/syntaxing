@@ -8,16 +8,14 @@
     <title>Syntaxing</title>
   </head>
   <body>
-    <div id="heading">
-        {%if user %}
-            <b>{{user.nickname}} &lt;{{user.email}}&gt;</b>
-            {%if is_admin%} | <a href="/_ah/admin">Admin</a>{%endif%}
-            {%if sign_out%} | <a href="{{sign_out}}">Sign out</a>{%endif%}
-        {% else %}
-            {%if sign_in%}<a href="{{sign_in}}">Sign in</a>{%endif%}
-        {%endif%}
-    </div><!-- #heading -->
-  
-    {% block body %}{% endblock %}
+    <div id="body">
+        <div id="header">
+            <a href="/"><img src="/static/images/syntaxing.png"/></a>
+        </div><!-- #header -->
+        
+        <div id="content">
+            {% block body %}{% endblock %}
+        </div><!-- #content -->
+    </div><!-- #content -->
   </body>
 </html>

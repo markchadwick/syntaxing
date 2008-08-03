@@ -72,6 +72,9 @@ def edit(request, theme_id):
 
     return http.HttpResponseRedirect('/themes/')
 
+def thumbnail(request, id):
+    pass
+
 def new(request):
     return edit(request, None)
 
