@@ -1,0 +1,46 @@
+default_style {
+    fore:{{ theme.text_fg }};
+    back:{{ theme.background_bg }};
+    face:%(primary)s;
+    size:%(size)d;
+}
+
+comment_style {
+    fore:{{ theme.comment_fg }};
+    size:%(size)d {% if theme.comment_it %}italic{% endif %} {% if theme.comment_bl %}bold{% endif %};
+}
+
+keyword_style {
+	fore:{{ theme.keyword_fg }};
+    size:%(size)d {% if theme.keyword_it %}italic{% endif %} {% if theme.keyword_bl %}bold{% endif %};
+}
+
+string_style {
+    fore:{{ theme.string_fg }};
+    size:%(size)d {% if theme.string_it %}italic{% endif %} {% if theme.string_bl %}bold{% endif %};
+}
+
+char_style {
+    fore:{{ theme.string_fg }};
+    size:%(size)d {% if theme.string_it %}italic{% endif %} {% if theme.string_bl %}bold{% endif %};
+}
+
+number_style {
+    fore:{{ theme.number_fg }};
+    size:%(size)d {% if theme.number_it %}italic{% endif %} {% if theme.number_bl %}bold{% endif %};
+}
+
+class_style {
+    fore:{{ theme.class_fg }};
+    size:%(size)d {% if theme.class_it %}italic{% endif %} {% if theme.class_bl %}bold{% endif %};
+}
+
+funct_style {
+    fore:{{ theme.function_fg }};
+    size:%(size)d {% if theme.function_it %}italic{% endif %} {% if theme.function_bl %}bold{% endif %};
+}
+
+decor_style {
+    fore:{{ theme.decorator_fg }};
+    size:%(size)d {% if theme.decorator_it %}italic{% endif %} {% if theme.decorator_bl %}bold{% endif %};
+}

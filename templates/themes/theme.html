@@ -21,4 +21,13 @@
     </div><!-- #editor -->
 </div><!-- #theme_editor -->
 
+<hr/>
+
+<div id="download">
+    <ul class="download">
+        <li class="vim"><a href="{% url views.themes.vim theme.key.id %}">Download for vim</a></li>
+        <li class="editra"><a href="{% url views.themes.editra theme.key.id %}">Download for Editra</a></li>
+    </ul>
+</div>
+
 {% endblock %}
