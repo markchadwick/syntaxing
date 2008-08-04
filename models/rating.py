@@ -1,6 +1,6 @@
 from google.appengine.ext import db
 
-class Rating(db.Model):
+class HasRating():
 	num_votes = db.IntegerProperty(default=0)
 	vote_total = db.FloatProperty(default=0.0)	
 	
