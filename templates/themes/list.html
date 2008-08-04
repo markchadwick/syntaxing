@@ -16,9 +16,9 @@
                 Created {{theme.created|date:"Y/m/d H:i"}} by {{ theme.author.nickname }}
             </div>
 
-			<div class="description">
-				{{theme.description}}
-			</div>
+            {% if theme.description %}
+                <div class="description">{{ theme.description|escape }}</div>
+            {% endif %}
         </li>
     {% endfor %}
 </ul>

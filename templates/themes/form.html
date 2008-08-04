@@ -19,6 +19,7 @@
     <div id="editor">
         <div id="title">Python</div>
         <div id="body">
+            <textarea id="code_edit" name="code" style="display:none">{{ raw_code|escape }}</textarea>
             <div id="code_view" class="background">{{ code }}</div><!-- .background -->
         </div><!-- #body -->
     </div><!-- #editor -->
