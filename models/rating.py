@@ -15,7 +15,16 @@ class Rating(db.Model):
 	    """
 	    Returns the rating
 	    """
-	    return self.vote_total / self.num_votes
+	    if self.num_votes > 0:
+	        return self.vote_total / self.num_votes
+	    else:
+	        return -1
+	    
+	def __str__(self):
+	    """
+	    Gets the string representation
+	    """
+	    return str(self.get_rating())
 	    
 	    
 	    

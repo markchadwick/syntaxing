@@ -1,6 +1,6 @@
 from google.appengine.ext import db
 
-from models.theme_rating import ThemeRating
+from models.rating import Rating
 
 class Theme(db.Model):
 	#
@@ -12,7 +12,7 @@ class Theme(db.Model):
     modified  = db.DateTimeProperty(auto_now=True)
     description  = db.TextProperty("Description")
 
-    theme_rating = db.ReferenceProperty(ThemeRating)
+    rating = db.ReferenceProperty(Rating)
 
     background_bg  = db.StringProperty("Background",   default="#ffffff")
     
@@ -70,6 +70,17 @@ class Theme(db.Model):
     decorator_it    = db.BooleanProperty("Decorator Italic",    default=False)
     decorator_bl    = db.BooleanProperty("Decorator Bold",      default=False)    
     
+    
+    def __init__(self, *args, **kwargs):
+        """
+        Creates an empty rating object
+        """
+        r = Rating()
+        r.put()
+        self.rating = r
+
+        super(db.Model, self).__init__(*args, **kwargs)
+        
 
     def thumbnail_style(self):
         return "background:%s;color:%s" % (self.background_bg, self.text_fg)
