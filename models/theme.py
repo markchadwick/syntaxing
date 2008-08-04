@@ -1,15 +1,21 @@
 from google.appengine.ext import db
 
+from models.theme_rating import ThemeRating
+
 class Theme(db.Model):
+	#
+	# Meta data
+	#
     name      = db.StringProperty(required=True)
     author    = db.UserProperty()
-
     created   = db.DateTimeProperty(auto_now_add=True)
     modified  = db.DateTimeProperty(auto_now=True)
-
     description  = db.TextProperty("Description")
 
+    theme_rating = db.ReferenceProperty(ThemeRating)
+
     background_bg  = db.StringProperty("Background",   default="#ffffff")
+    
     
     #
     # Basic Definitions
