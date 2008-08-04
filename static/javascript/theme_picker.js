@@ -10,18 +10,28 @@ jQuery.theme_picker = function (container, callback) {
 }
 
 jQuery._theme_picker = function (container, callback) {
-    var cp = this;
+    var picker = this;
+
     
-    /*
-     * <div id="styles">
-     *   <div id="close">&nbsp;</div>
-     *   <div id="active_style">&nbsp</div>
-     *   <div id="colorpicker"></div>
-     *   <ul id="fontopts">
-     *      <li><input type="checkbox" name="italic" class="cp_checkbox" id="cp_it"/><label for="cp_it">Italic</label></li>
-     *      <li><input type="checkbox" name="bold" class="cp_checkbox" id="cp_bl"/><label for="cp_bl">Bold</label></li>
-     *   </ul>
-     * </div>
-     */
-    $(container).html('<div id="styles"><div id="close">&nbsp;</div><div id="active_style">&nbsp;</div><div id="colorpicker"></div><ul id="fontopts"><li><input type="checkbox" name="italic" class="cp_checkbox" id="cp_it"/><label for="cp_it">Italic</label></li><li><input type="checkbox" name="bold" class="cp_checkbox" id="cp_bl"/><label for="cp_bl">Bold</label></li></ul></div>');
+
+    ////////////////////////////////////////////////////////////////////////////
+    // "Private" Implementation
+        
+    picker._bind_container = function(){
+        $(container).html([
+            '<div id="styles">',
+                '<div id="close">&nbsp;</div>',
+                '<div id="active_style">&nbsp;</div>',
+                '<div id="colorpicker"></div>',
+                '<ul id="fontopts">',
+                    '<li><input type="checkbox" name="italic" class="cp_checkbox" id="cp_it"/><label for="cp_it">Italic</label></li>',
+                    '<li><input type="checkbox" name="bold" class="cp_checkbox" id="cp_bl"/><label for="cp_bl">Bold</label></li>',
+                '</ul>',
+            '</div>',
+        ].join("\n"));
+    }
+        
+    ////////////////////////////////////////////////////////////////////////////
+    // Main
+    picker._bind_container();
 }
