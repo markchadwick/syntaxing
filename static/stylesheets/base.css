@@ -62,3 +62,29 @@ ul.theme_list li.theme a.title:hover {
 ul.theme_list li.theme div.about {
     color:              #999;
 }
+
+/*
+ * Download
+ */
+ul.download {
+    list-style-type:    none;
+    margin:             0;
+    padding:            0;
+}
+
+ul.download li {
+    height:             19px;
+    padding:            0 0 0 20px;
+}
+
+ul.download li.vim {
+    background:         url(/static/images/icons/vim.png) no-repeat top left;
+}
+
+ul.download li.editra {
+    background:         url(/static/images/icons/editra.png) no-repeat top left;
+}
+
+ul.download li.textmate {
+    background:         url(/static/images/icons/textmate.png) no-repeat top left;
+}

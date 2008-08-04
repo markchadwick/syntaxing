@@ -5,11 +5,10 @@
 
     <script type="text/javascript" src="/static/javascript/farbtastic.js"/></script>
     <script type="text/javascript" src="/static/javascript/theme_editor.js"/></script>
+    <script type="text/javascript" src="/static/javascript/language_picker.js"/></script>
 {% endblock %}
 
 {% block body %}
-<h1>New Theme</h1>
-
 <form action="{% url views.themes.edit theme.key.id %}" method="post">
     {% include "themes/form.html" %}
     

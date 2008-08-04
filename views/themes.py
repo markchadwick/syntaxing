@@ -108,6 +108,9 @@ def tokenize(request):
     lang = request.POST.get('language')
     code = request.POST.get('code')
     
+    if(code == None or code == ""):
+        code = SNIPPETS[lang]
+    
     return http.HttpResponse(tokenize_to_html(code))
 
 # ------------------------------------------------------------------------------

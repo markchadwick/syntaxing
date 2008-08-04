@@ -7,15 +7,16 @@
 {% block body %}
 <h1>{{ theme.name }}</h1>
 
-<div id="description">
-	{{ theme.description }}
-</div>
+{% if theme.description %}
+    <div id="description">
+        {{ theme.description }}
+    </div>
+{% endif %}
 
 <div id="theme_editor">
     <div id="editor">
         <div id="title">Python</div>
         <div id="body">
-            <textarea id="code_edit" style="display:none;" rows="20" cols="80">{{ raw_code|escape }}</textarea>
             <div id="code_view" class="background">{{ code }}</div><!-- .background -->
         </div><!-- #body -->
     </div><!-- #editor -->
@@ -25,8 +26,9 @@
 
 <div id="download">
     <ul class="download">
-        <li class="vim"><a href="{% url views.themes.vim theme.key.id %}">Download for vim</a></li>
-        <li class="editra"><a href="{% url views.themes.editra theme.key.id %}">Download for Editra</a></li>
+        <li class="vim"><a href="{% url views.themes.vim theme.key.id %}">Vim</a></li>
+        <li class="editra"><a href="{% url views.themes.editra theme.key.id %}">Editra</a></li>
+        <li class="textmate"><a href="{% url views.themes.textmate theme.key.id %}">TextMate</a></li>
     </ul>
 </div>
 
