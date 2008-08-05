@@ -1,22 +1,8 @@
 <p><input type="text" name="name" value="{{ theme.name }}" id="id_name" /></p>
 
-<a href="#" id="edit_link">Edit</a>
 <div id="theme_editor">
     <div id="theme_picker"></div>
-
-    <div id="editor">
-        <div id="title">
-            {% if theme.name %}
-                {{theme.name|escape}}
-            {% else %}
-                New Theme
-            {% endif %}
-        </div>
-        <div id="body">
-            <textarea id="code_edit" name="code" style="display:none">{{ raw_code|escape }}</textarea>
-            <div id="code_view" class="background">{{ code }}</div><!-- .background -->
-        </div><!-- #body -->
-    </div><!-- #editor -->
+    <div id="theme_editor"></div>
 </div><!-- #theme_editor -->
 
 <p>
