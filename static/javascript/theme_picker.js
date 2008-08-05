@@ -12,6 +12,12 @@ jQuery.theme_picker = function (container, callback) {
 jQuery._theme_picker = function (container, callback) {
     var picker = this;
 
+    var current_target;
+    var current_fg;
+    var current_bg;
+    var current_it;
+    var current_it;
+
     ////////////////////////////////////////////////////////////////////////////
     // "Public" Implementation
     
@@ -24,8 +30,10 @@ jQuery._theme_picker = function (container, callback) {
     
         $(container).css('top', top);
         $(container).css('left', left);
-        
         picker.set_title(class_name);
+        
+        picker._set_target(class_name);
+        
         picker.show();
     }
     
@@ -41,9 +49,19 @@ jQuery._theme_picker = function (container, callback) {
         var init_caps = title.substring(0, 1).toUpperCase() + title.substring(1, title.length);
         $('#active_style').html(init_caps);
     }
-
+    
     ////////////////////////////////////////////////////////////////////////////
     // "Private" Implementation
+    
+    picker._set_target = function(target_name) {
+        current_target = target_name;
+        current_fg = $('#id_' + target_name + '_fg').get(0);
+        current_bg = $('#id_' + target_name + '_bg').get(0);
+        current_it = $('#id_' + target_name + '_it').get(0);
+        current_bl = $('#id_' + target_name + '_bl').get(0);
+        
+        console.log(current_bg.value);
+    }
     
     picker._bind_close = function(selector) {
         $(selector).click(function(e) {
