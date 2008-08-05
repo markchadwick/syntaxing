@@ -63,9 +63,21 @@ jQuery._theme_picker = function (container, callback) {
                 
         if(current_fg) {
             color_picker.setColor(current_fg.value);
-        } else {
-            console.log("Nope");
+            $('#cp_it').get(0).checked = current_it.checked;
+            $('#cp_bl').get(0).checked = current_bl.checked;
         }
+        
+        $('#cp_it').unbind().click(function(e) {
+            var checkbox = e.currentTarget;
+            $('.' + current_target).css('font-style', (checkbox.checked ? 'italic' : 'normal'));
+            current_it.checked = checkbox.checked;
+        });
+        
+        $('#cp_bl').unbind().click(function(e) {
+            var checkbox = e.currentTarget;
+            $('.' + current_target).css('font-weight', (checkbox.checked ? 'bold' : 'normal'));
+            current_bl.checked = checkbox.checked;
+        });        
     }
     
     picker._bind_close = function(selector) {
