@@ -189,37 +189,37 @@ function _enter_view_code_mode(element, code_view, code_edit) {
 // Document Loading
 
 $(document).ready(function() {
-    color_picker = $.farbtastic('#colorpicker', function(color) {
-        var key;
-        switch(theming_postfix) {
-            case 'bg':
-                key = "background";
-                break;
-            
-            case 'fg':
-                key = "color";
-                break;
-        }
-        
-        if(current_style != "") {
-            $("." + current_style).css(key, color);
-            var form_element = get_form_element(current_style);
-            
-            if(form_element) {
-                form_element.value = color;
-            }
-        }
-    });
-
-    $('#close').click(function(e) {
-        $('#styles').css('display', 'none');
-    });
+    var theme_picker = $.theme_picker('#theme_picker');
     
-    $('#edit_link').click(_toggle_edit);
-    _create_syntax_bindings();
-    reload_theme();
+//    color_picker = $.farbtastic('#colorpicker', function(color) {
+//        var key;
+//        switch(theming_postfix) {
+//            case 'bg':
+//                key = "background";
+//                break;
+            
+//            case 'fg':
+//                key = "color";
+//                break;
+//        }
+        
+//        if(current_style != "") {
+//            $("." + current_style).css(key, color);
+//            var form_element = get_form_element(current_style);
+            
+//            if(form_element) {
+//                form_element.value = color;
+//            }
+//        }
+//    });
+
+//    $('#close').click(function(e) {
+//        $('#styles').css('display', 'none');
+//    });
+    
+//    $('#edit_link').click(_toggle_edit);
+//    _create_syntax_bindings();
+//    reload_theme();
 });
 
-//$(document).click(function(e) {
-//    $('#styles').css('display', 'none');
-//});
+
