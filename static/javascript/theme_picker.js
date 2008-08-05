@@ -55,12 +55,17 @@ jQuery._theme_picker = function (container, callback) {
     
     picker._set_target = function(target_name) {
         current_target = target_name;
+                
         current_fg = $('#id_' + target_name + '_fg').get(0);
         current_bg = $('#id_' + target_name + '_bg').get(0);
         current_it = $('#id_' + target_name + '_it').get(0);
         current_bl = $('#id_' + target_name + '_bl').get(0);
-        
-        console.log(current_bg.value);
+                
+        if(current_fg) {
+            color_picker.setColor(current_fg.value);
+        } else {
+            console.log("Nope");
+        }
     }
     
     picker._bind_close = function(selector) {
@@ -83,13 +88,18 @@ jQuery._theme_picker = function (container, callback) {
         picker._bind_close('#close');
     }
     
-    picker._farbtastic_callback = function(color) {
-        console.log("_farbastic_callback", color);
+    function _farbtastic_callback(color) {
+        if(current_target) {
+            $('.' + current_target).css('color', color);
+        }
+        if(current_fg) {
+            current_fg.value = color;
+        }
     }
         
     ////////////////////////////////////////////////////////////////////////////
     // Main
     
     picker._bind_container();
-    var color_picker = $.farbtastic('#colorpicker', picker._farbastic_callback);
+    var color_picker = $.farbtastic('#colorpicker', _farbtastic_callback);
 }

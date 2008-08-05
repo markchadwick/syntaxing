@@ -247,7 +247,6 @@ jQuery._theme_editor = function(container, picker, title) {
 
 $(document).ready(function() {
     var theme_picker = $.theme_picker('#theme_picker');
-    console.log("Picker", theme_picker);
     var theme_editor = $.theme_editor('#theme_editor', theme_picker, "New Theme");
     
     $('select.lang_select').change(function(event) {
