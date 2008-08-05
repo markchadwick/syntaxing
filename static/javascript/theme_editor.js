@@ -193,7 +193,10 @@ jQuery.theme_editor = function (container, picker, title) {
 
 jQuery._theme_editor = function(container, picker, title) {
     var editor = this;
-    
+
+    ////////////////////////////////////////////////////////////////////////////
+    // "Public" Implementation
+
     ////////////////////////////////////////////////////////////////////////////
     // "Private" Implementation
     
@@ -202,16 +205,41 @@ jQuery._theme_editor = function(container, picker, title) {
             '<div id="editor">',
                 '<div id="title">' + title +'</div>',
                 '<div id="body">',
-                    '<textarea id="code_edit" name="code" style="display:none"></textarea>',
-                    '<div id="code_view" class="background">Hi!\nThere!</div>',
+                    '<div id="code_view" class="background"></div>',
                 '</div>',
             '</div>',
         ].join("\n"));
     }
     
+    editor._rebind = function() {
+        $('span, .background').click(function(event) {
+            var element = event.currentTarget;
+            var token_type = element.className;
+            
+            picker.set_focus(element, token_type);
+            
+            return false;
+        });
+    }
+    
+    editor._load_highlighted_code = function() {
+        var language = $('#language').text();
+        var code = $('#code').text();
+
+        $.post('/themes/tokenize', {
+            'language': language,
+            'code':     code
+        }, function(data) {
+            $('#code_view').html(data);
+            editor._rebind();
+        });
+    }
+    
     ////////////////////////////////////////////////////////////////////////////
     // Main
+    
     editor._bind_container();
+    editor._load_highlighted_code();
 }
 
 ////////////////////////////////////////////////////////////////////////////////
@@ -219,7 +247,20 @@ jQuery._theme_editor = function(container, picker, title) {
 
 $(document).ready(function() {
     var theme_picker = $.theme_picker('#theme_picker');
+    console.log("Picker", theme_picker);
     var theme_editor = $.theme_editor('#theme_editor', theme_picker, "New Theme");
+    
+    $('select.lang_select').change(function(event) {
+        var element = event.currentTarget;
+        
+        $.post("/themes/snippet", {
+            'language': element.value
+        }, function(data) {
+            $('#language').html(element.value);
+            $('#code').html(data);
+            theme_editor._load_highlighted_code();
+        });
+    });
     
 //    color_picker = $.farbtastic('#colorpicker', function(color) {
 //        var key;

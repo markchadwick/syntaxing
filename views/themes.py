@@ -96,13 +96,17 @@ def new(request):
     user = users.GetCurrentUser()
     theme = None
     form = ThemeForm(data=request.POST or None, instance=theme)
-    
+    language = 'python'
+
     return respond(request, user, 'themes/new', {
         'form':         form,
         'theme':        theme,
-        'code':         tokenize_to_html(SNIPPETS['python']),
-        'raw_code':     SNIPPETS['python']
+        'language':     language,
+        'code':         SNIPPETS[language],
     })
+
+def snippet(request):
+    return http.HttpResponse(SNIPPETS[request.POST.get('language', 'python')])
 
 def tokenize(request):
     lang = request.POST.get('language')

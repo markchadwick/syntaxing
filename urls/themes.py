@@ -17,6 +17,7 @@ urlpatterns = patterns('',
     (r'^new$',          new),
     (r'^edit/(\d+)$',   edit),
     (r'^tokenize$',     tokenize),
+    (r'^snippet$',      snippet),
     
     (r'^(?P<theme_id>\d+)/theme.css',       css),
     (r'^(?P<theme_id>\d+)/theme.vim',       vim),
