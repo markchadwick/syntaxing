@@ -211,15 +211,43 @@ jQuery._theme_editor = function(container, picker, title) {
         ].join("\n"));
     }
     
+    editor._reload_theme = function() {
+        $('#syntax input').each(function(i, element) {
+            var name = element.name;
+                        
+            var prefix_length = name.length-3;
+                        
+            var postfix = name.substring(prefix_length);
+            var prefix  = name.substring(0, prefix_length);
+                        
+            var selector = $('.'+ prefix);
+
+            switch(postfix) {
+                case '_fg':
+                    selector.css('color', element.value);
+                    break;
+                case '_bg':
+                    selector.css('background', element.value);
+                    break;
+                case '_it':
+                    selector.css('font-style', element.checked ? 'italic' : 'normal');
+                    break;
+                case '_bl':
+                    selector.css('font-weight', element.checked ? 'bold' : 'normal');
+                    break;
+            }
+        });
+    }
+    
     editor._rebind = function() {
         $('span, .background').click(function(event) {
             var element = event.currentTarget;
             var token_type = element.className;
             
             picker.set_focus(element, token_type);
-            
             return false;
         });
+        editor._reload_theme();
     }
     
     editor._load_highlighted_code = function() {
@@ -250,8 +278,10 @@ $(document).ready(function() {
     var theme_editor = $.theme_editor('#theme_editor', theme_picker, "New Theme");
     
     $('select.lang_select').change(function(event) {
-        var element = event.currentTarget;
+        theme_picker.hide();
         
+        var element = event.currentTarget;
+
         $.post("/themes/snippet", {
             'language': element.value
         }, function(data) {

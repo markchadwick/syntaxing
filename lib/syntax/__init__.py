@@ -7,6 +7,8 @@ from pygments.token import Token
 
 LANGUAGES = {
     'python':   PythonLexer,
+    'ruby':     RubyLexer,
+    'c':        CLexer,
 }
 
 #
@@ -52,5 +54,5 @@ def lexers():
     
     return lexers
 
-def tokenize(code_string, lang='python'):
-    return highlight(code_string, LANGUAGES[lang](), SyntaxingHTMLFormatter())
+def tokenize(code_string, language='python'):
+    return highlight(code_string, LANGUAGES[language](), SyntaxingHTMLFormatter())

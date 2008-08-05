@@ -109,13 +109,13 @@ def snippet(request):
     return http.HttpResponse(SNIPPETS[request.POST.get('language', 'python')])
 
 def tokenize(request):
-    lang = request.POST.get('language')
+    language = request.POST.get('language')
     code = request.POST.get('code')
     
     if(code == None or code == ""):
         code = SNIPPETS[lang]
     
-    return http.HttpResponse(tokenize_to_html(code))
+    return http.HttpResponse(tokenize_to_html(code, language))
 
 # ------------------------------------------------------------------------------
 # Theme Representations
