@@ -10,7 +10,7 @@
 {% endblock %}
 
 {% block body %}
-<form action="{% url views.themes.edit theme.key.id %}" method="post">
+<form action="/themes/create" method="post">
     {% include "themes/form.html" %}
     
     <p><input type="submit" value="Create Theme"/></p>

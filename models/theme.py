@@ -69,20 +69,7 @@ class Theme(db.Model, HasRating):
 
     instance_variable_fg = db.StringProperty("Instance Variable Foreground", default="#000000")
     instance_variable_it = db.BooleanProperty("Instance Variable Italic",    default=False)
-    instance_variable_bl = db.BooleanProperty("Instance Variable Bold",      default=False)       
-    #
-    # instance_variable
-    
-    def __init__(self, *args, **kwargs):
-        """
-        Creates an empty rating object
-        """
-        r = Rating()
-        r.put()
-        self.rating = r
-
-        super(db.Model, self).__init__(*args, **kwargs)
-        
+    instance_variable_bl = db.BooleanProperty("Instance Variable Bold",      default=False)
 
     def thumbnail_style(self):
         return "background:%s;color:%s" % (self.background_bg, self.text_fg)

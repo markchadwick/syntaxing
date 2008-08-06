@@ -89,8 +89,24 @@ def edit(request, theme_id):
 
     return http.HttpResponseRedirect('/themes/')
 
-def thumbnail(request, id):
-    pass
+def create(request):
+    user = users.GetCurrentUser()
+    form = ThemeForm(data=request.POST)
+    
+    if(form.is_valid()):
+        form.save()
+        return http.HttpResponseRedirect("/themes/%d" % form.instance.key().id())
+    else:
+        print '- ' * 50
+        print form
+    
+    return response(request, user, 'themes/new', {
+        'form': form,
+    })
+
+# ------------------------------------------------------------------------------
+# HTML Methods
+# ------------------------------------------------------------------------------
 
 def new(request):
     user = users.GetCurrentUser()
@@ -164,4 +180,4 @@ def textmate(request, theme_id):
 class ThemeForm(djangoforms.ModelForm):
     class Meta:
         model = Theme
-        exclude = ['author', 'created', 'modified', 'name']
+        exclude = ['author', 'created', 'modified']
