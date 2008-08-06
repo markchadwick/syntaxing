@@ -100,9 +100,13 @@ def create(request):
     if(form.is_valid()):
         form.save()
         return http.HttpResponseRedirect("/themes/%d" % form.instance.key().id())
-    
-    return response(request, user, 'themes/new', {
-        'form': form,
+   
+    language = 'python' 
+    return respond(request, user, 'themes/new', {
+        'form':     form,
+        'theme':    None,
+        'language': 'language',
+        'code':     SNIPPETS[language],
     })
 
 # ------------------------------------------------------------------------------
