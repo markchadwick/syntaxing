@@ -2,10 +2,11 @@
 {% block head %}
     <link type="text/css" rel="stylesheet" href="/static/stylesheets/theme_editor.css"/>
     <link type="text/css" rel="stylesheet" href="/static/stylesheets/farbtastic.css"/>
+    <link type="text/css" rel="stylesheet" href="/static/stylesheets/theme_picker.css"/>
 
     <script type="text/javascript" src="/static/javascript/farbtastic.js"/></script>
+    <script type="text/javascript" src="/static/javascript/theme_picker.js"/></script>
     <script type="text/javascript" src="/static/javascript/theme_editor.js"/></script>
-    <script type="text/javascript" src="/static/javascript/language_picker.js"/></script>
 {% endblock %}
 
 {% block body %}
@@ -14,7 +15,7 @@
 <form action="{% url views.themes.edit theme.key.id %}" method="post">
     {% include "themes/form.html" %}
     
-    <p><input type="submit" value="Create Theme"/></p>
+    <p><input type="submit" value="Update Theme"/></p>
 </form>
 
 {% endblock %}

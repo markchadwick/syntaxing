@@ -65,8 +65,8 @@ def edit(request, theme_id):
         return respond(request, user, 'themes/new', {
             'form':         form,
             'theme':        theme,
-            'code':         tokenize_to_html(SNIPPETS['python']),
-            'raw_code':     SNIPPETS['python']
+            'language':     'python',
+            'code':         SNIPPETS['python']
         })
 
     errors = form.errors
@@ -92,13 +92,14 @@ def edit(request, theme_id):
 def create(request):
     user = users.GetCurrentUser()
     form = ThemeForm(data=request.POST)
-    
+
+#    print '- ' * 40
+#    print form.data
+#    print '- ' * 40
+
     if(form.is_valid()):
         form.save()
         return http.HttpResponseRedirect("/themes/%d" % form.instance.key().id())
-    else:
-        print '- ' * 50
-        print form
     
     return response(request, user, 'themes/new', {
         'form': form,
@@ -180,4 +181,4 @@ def textmate(request, theme_id):
 class ThemeForm(djangoforms.ModelForm):
     class Meta:
         model = Theme
-        exclude = ['author', 'created', 'modified']
+        exclude = ['author', 'created', 'modified', 'description']

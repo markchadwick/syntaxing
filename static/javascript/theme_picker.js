@@ -105,10 +105,13 @@ jQuery._theme_picker = function (container, callback) {
     
     function _farbtastic_callback(color) {
         if(current_target) {
-            $('.' + current_target).css('color', color);
-        }
-        if(current_fg) {
-            current_fg.value = color;
+            if(current_target == "background") {
+                $('.' + current_target).css('background', color);
+                current_bg.value = color;
+            } else {
+                $('.' + current_target).css('color', color);
+                current_fg.value = color;
+            }
         }
     }
         

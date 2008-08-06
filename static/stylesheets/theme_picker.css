@@ -1,7 +1,7 @@
 #theme_picker {
     width:          195px;
     position:       absolute;
-    background:     url(/static/images/editor/color_picker.png) no-repeat top left;
+    background:     url(/static/images/theme_picker/bg.png) no-repeat top left;
     height:         336px;
     width:          260px;
     
@@ -15,7 +15,7 @@
 }
 #theme_picker #close:hover {
     cursor: pointer;
-    /* cursor: hand */
+    cursor: hand;
 }
 
 #theme_picker #active_style {
@@ -29,9 +29,35 @@
     margin:         10px 0 0 33px;
 }
 
-#theme_picker #fontopts {
+#theme_picker ul#fontopts {
     list-style-type:    none;
     margin:             0 0 0 20px;
     padding:            0;
     font-size:          90%;
+}
+
+#theme_picker ul#fontopts li {
+    display:            inline;
+}
+
+/*
+ * Foreground/background
+ */
+#theme_picker ul.layer_picker {
+    list-style-type:    none;
+    margin:             0 0 0 17px;
+    padding:            0;
+}
+#theme_picker ul.layer_picker li {
+    float:              left;
+    font-size:          87%;
+    color:              #999;
+    padding:            0 5px;
+}
+#theme_picker ul.layer_picker li:hover {
+    color:              #000;
+    text-decoration:    underline;
+    
+    cursor: pointer;
+    cursor: hand;
 }
