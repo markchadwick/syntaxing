@@ -18,30 +18,41 @@ class SyntaxingHTMLFormatter(HtmlFormatter):
     def _get_css_class(self, ttype):
         try:
             return {
-                Token.Text:             'text',
-                Token.Comment:          'comment',
-                Token.Keyword:          'keyword',
+                Token.Text:                     'text',
                 
-                Token.Punctuation:      'text',
-                Token.Name:             'text',
-                Token.Operator:         'text',
+                Token.Comment:                  'comment',
+                Token.Comment.Single:           'comment',
+                
+
+                Token.Keyword:                  'keyword',
+                
+                Token.Punctuation:              'text',
+                Token.Name:                     'text',
+                Token.Operator:                 'text',
             
                 Token.Literal.String:           'string',
                 Token.Literal.String.Interpol:  'string',
+                Token.Literal.String.Single:    'string',
+                Token.Literal.String.Double:    'string',
 
+                Token.Literal.Number.Integer:   'number',
                 Token.Literal.Number.Float:     'number',
                 
 
-                Token.Name.Class:       'class',
-                Token.Name.Builtin:     'builtin',
-                Token.Name.Function:    'function',
-                Token.Name.Namespace:   'namespace',
+                Token.Name.Class:               'class',
+                Token.Name.Builtin:             'builtin',
+                Token.Name.Function:            'function',
+                Token.Name.Namespace:           'namespace',
                 
-                Token.Name.Builtin.Pseudo:  'pseudo',
-                Token.Name.Decorator:       'decorator',
+                Token.Name.Builtin.Pseudo:      'pseudo',
+                
+                Token.Name.Decorator:           'decorator',
+                
+                Token.Name.Variable.Instance:   'instance_variable',
             }[ttype]
             
         except KeyError:
+            print "Unknown Token Type:", ttype
             return 'text'
 
 def lexers():

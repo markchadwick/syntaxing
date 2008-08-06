@@ -66,7 +66,12 @@ class Theme(db.Model, HasRating):
     decorator_fg    = db.StringProperty("Decorator Foreground", default="#000000")
     decorator_it    = db.BooleanProperty("Decorator Italic",    default=False)
     decorator_bl    = db.BooleanProperty("Decorator Bold",      default=False)    
-    
+
+    instance_variable_fg = db.StringProperty("Instance Variable Foreground", default="#000000")
+    instance_variable_it = db.BooleanProperty("Instance Variable Italic",    default=False)
+    instance_variable_bl = db.BooleanProperty("Instance Variable Bold",      default=False)       
+    #
+    # instance_variable
     
     def __init__(self, *args, **kwargs):
         """

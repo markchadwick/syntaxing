@@ -46,8 +46,11 @@ jQuery._theme_picker = function (container, callback) {
     }
 
     picker.set_title = function(title) {
-        var init_caps = title.substring(0, 1).toUpperCase() + title.substring(1, title.length);
-        $('#active_style').html(init_caps);
+        var words = title.split('_');
+        for(var i=0; i<words.length; i++) {
+            words[i] = words[i].substring(0, 1).toUpperCase() + words[i].substring(1, words[i].length);
+        }
+        $('#active_style').html(words.join(" "));
     }
     
     ////////////////////////////////////////////////////////////////////////////
