@@ -554,7 +554,7 @@ $x =~ s/abc/aBc/;   # substitute lowercase b with uppercase B
 # ------------------------------------------------------------------------------
 # Plain Text
 # ------------------------------------------------------------------------------
-'txt': """Here is some plain text to test the editor with highlighting in an in active state. This is rather boring isn't it?
+'text': """Here is some plain text to test the editor with highlighting in an in active state. This is rather boring isn't it?
 
 Hello World
 """,
