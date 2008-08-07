@@ -144,7 +144,9 @@ def tokenize(request):
 
 def css(request, theme_id):
     theme = Theme.get(db.Key.from_path(Theme.kind(), int(theme_id)))
-    
+    theme.num_downloads += 1
+    theme.save()
+
     response = HttpResponse(loader.render_to_string('themes/representations/theme.css', {
         'theme': theme
     }))
@@ -153,7 +155,9 @@ def css(request, theme_id):
 
 def vim(request, theme_id):
     theme = Theme.get(db.Key.from_path(Theme.kind(), int(theme_id)))
-    
+    theme.num_downloads += 1
+    theme.save()
+
     response = HttpResponse(loader.render_to_string('themes/representations/theme.vim', {
         'theme': theme
     }))
@@ -162,6 +166,8 @@ def vim(request, theme_id):
     
 def editra(request, theme_id):
     theme = Theme.get(db.Key.from_path(Theme.kind(), int(theme_id)))
+    theme.num_downloads += 1
+    theme.save()
     
     response = HttpResponse(loader.render_to_string('themes/representations/theme.ess', {
         'theme': theme
@@ -171,6 +177,8 @@ def editra(request, theme_id):
     
 def textmate(request, theme_id):
     theme = Theme.get(db.Key.from_path(Theme.kind(), int(theme_id)))
+    theme.num_downloads += 1
+    theme.save()
     
     response = HttpResponse(loader.render_to_string('themes/representations/theme.tmTheme', {
         'theme': theme
@@ -185,4 +193,10 @@ def textmate(request, theme_id):
 class ThemeForm(djangoforms.ModelForm):
     class Meta:
         model = Theme
-        exclude = ['author', 'created', 'modified', 'description']
+        exclude = [
+            'author',
+            'created',
+            'modified',
+            'description',
+            'num_downloads'
+        ]

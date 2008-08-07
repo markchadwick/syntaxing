@@ -10,7 +10,10 @@ class Theme(db.Model, HasRating):
     author    = db.UserProperty()
     created   = db.DateTimeProperty(auto_now_add=True)
     modified  = db.DateTimeProperty(auto_now=True)
-    description  = db.TextProperty("Description")
+    
+    description     = db.TextProperty("Description")
+    num_downloads   = db.IntegerProperty("Number of Downloads", default=0)
+
 
     background_bg  = db.StringProperty("Background",   default="#ffffff")
     
