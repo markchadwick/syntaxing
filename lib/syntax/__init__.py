@@ -2,14 +2,9 @@ from pygments import highlight
 from pygments.lexers import *
 
 from pygments.formatters import HtmlFormatter
+from pygments.lexers import get_lexer_by_name
 from pygments.lexers._mapping import LEXERS
 from pygments.token import Token
-
-LANGUAGES = {
-    'python':   PythonLexer,
-    'ruby':     RubyLexer,
-    'c':        CLexer,
-}
 
 #
 # This is a comment
@@ -66,4 +61,4 @@ def lexers():
     return lexers
 
 def tokenize(code_string, language='python'):
-    return highlight(code_string, LANGUAGES[language](), SyntaxingHTMLFormatter())
+    return highlight(code_string, get_lexer_by_name(language), SyntaxingHTMLFormatter())
