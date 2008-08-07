@@ -1,6 +1,15 @@
 body {
     line-height:    1.2em;
     font:           10pt Ariel, Sans-Serif;
+    color:          #333;
+}
+
+a {
+    color:          #999;
+}
+
+a:hover {
+    color:          #000;
 }
 
 a img {
@@ -20,6 +29,57 @@ body {
 #header {
     margin:         5px 0 0 0;
     height:         200px;
+}
+
+/*
+ * Login
+ */
+.login {
+    font-size:      90%;
+    color:          #666;
+}
+
+/*
+ * Layout
+ */
+
+#info_box {
+    width:          495px;
+    height:         316px;
+    background:     url(/static/images/home_bg.png) no-repeat top left;
+    font-size:      90%;
+    color:          #666;
+    cursor:         pointer;
+    cursor:         hand;
+}
+#info_box h1 {
+    margin:         10px 0 0 10px;
+    padding:        7px 0 0 0;
+    color:          #333;
+}
+
+#info_box p {
+    margin:         5px 10px;
+    padding:        0;
+}
+
+/*
+ * Sidebar
+ */
+#sidebar {
+    width:          240px;
+    float:          right;
+    margin:         0;
+    padding:        0;
+    
+    color:          #999;
+    font-size:      90%;
+}
+
+#sidebar .portlet h3 {
+    margin:         0;
+    padding:        0;
+    border-bottom:  1px solid #eee;
 }
 
 /*

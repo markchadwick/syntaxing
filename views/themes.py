@@ -93,10 +93,6 @@ def create(request):
     user = users.GetCurrentUser()
     form = ThemeForm(data=request.POST)
 
-#    print '- ' * 40
-#    print form.data
-#    print '- ' * 40
-
     if(form.is_valid()):
         form.save()
         return http.HttpResponseRedirect("/themes/%d" % form.instance.key().id())

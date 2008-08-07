@@ -74,6 +74,14 @@ class Theme(db.Model, HasRating):
     instance_variable_it = db.BooleanProperty("Instance Variable Italic",    default=False)
     instance_variable_bl = db.BooleanProperty("Instance Variable Bold",      default=False)
 
+    @classmethod
+    def highest_ranked(self, limit=10):
+        return []
+
+    @classmethod
+    def most_downloaded(self, limit=10):
+        return db.GqlQuery('SELECT * FROM Theme ORDER BY num_downloads DESC').fetch(limit=limit)
+
     def thumbnail_style(self):
         return "background:%s;color:%s" % (self.background_bg, self.text_fg)
     

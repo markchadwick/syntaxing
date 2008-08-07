@@ -2,6 +2,38 @@
 
 {% block body %}
 
-<h1>Word!</h1>
+<div id="sidebar">
+    <div class="portlet">
+        <h3>Highest Ranked</h3>
+    </div><!-- .portlet -->
+    
+    <div class="portlet">
+        <h3>Most Downloaded</h3>
+        <ul class="most_downloaded">
+            {% for theme in most_downloaded %}
+                <li>{{ theme.name }}</li>
+            {% endfor %}
+        </ul>
+    </div><!-- .portlet -->
+    
+    <div class="portlet">
+        <h3>News</h3>
+    </div><!-- .portlet -->
+</div>
 
+<div id="info_box">
+    <h1>Let's Make a Theme</h1>
+    
+    <p>
+        It's pretty damn easy to make a new syntaxing highlighting theme for the
+        text editor of your choice.  Of couse, we don't support them all, but
+        we're working on that. [TODO]
+    </p>
+</div>
+
+<script type="text/javascript">
+    $('#info_box').click(function(element) {
+        document.location = '/themes/new';
+    });
+</script>
 {% endblock %}
