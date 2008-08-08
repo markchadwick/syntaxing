@@ -5,8 +5,6 @@
 {% endblock %}
 
 {% block body %}
-<h1>{{ theme.name }}</h1>
-
 {% if theme.description %}
     <div id="description">
         {{ theme.description }}
@@ -15,14 +13,16 @@
 
 <div id="theme_editor">
     <div id="editor">
-        <div id="title">Python</div>
+        <div id="editor_title">{{ theme.name|escape }}</div>
         <div id="body">
             <div id="code_view" class="background">{{ code }}</div><!-- .background -->
         </div><!-- #body -->
     </div><!-- #editor -->
 </div><!-- #theme_editor -->
 
-<p>{{ theme.description|escape }}</p>
+{% if theme.description %}
+    <p>{{ theme.description|escape }}</p>
+{% endif %}
 
 <hr/>
 

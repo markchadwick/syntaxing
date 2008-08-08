@@ -1,6 +1,12 @@
-<!--<p><label for="id_name">Name:</label> <input type="text" name="name" id="id_name" /></p>-->
+<p><input type="text" name="name" id="id_name" class="biginput" value="{{ form.instance.name }}"/></p>
 
-<p><input type="text" name="name" id="id_name" class="biginput"/></p>
+{% if form.errors %}
+    <pre>ERRORS: {{ form.errors }}</pre>
+{% endif %}
+
+{% if not theme.key.id %}
+<h2 class="info">Click on the code below to get started</h2>
+{% endif %}
 
 <div id="editor">
     <div id="theme_picker"></div>

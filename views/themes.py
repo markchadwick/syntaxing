@@ -19,6 +19,8 @@ from lib.syntax.pygment import theme_to_css as pygmentize
 from views import respond
 from models.theme import Theme
 
+from lib.syntax.conversion import *
+
 # ------------------------------------------------------------------------------
 # View Methods
 # ------------------------------------------------------------------------------
@@ -93,7 +95,8 @@ def edit(request, theme_id):
 def create(request):
     user = users.GetCurrentUser()
     form = ThemeForm(data=request.POST)
-
+    language = request.POST.get('language', 'python')
+    
     if(form.is_valid()):
         form.save()
         return http.HttpResponseRedirect("/themes/%d" % form.instance.key().id())
@@ -102,7 +105,7 @@ def create(request):
     return respond(request, user, 'themes/new', {
         'form':     form,
         'theme':    None,
-        'language': 'language',
+        'language': language,
         'code':     SNIPPETS[language],
     })
 
@@ -113,7 +116,7 @@ def create(request):
 def new(request):
     user = users.GetCurrentUser()
     theme = None
-    form = ThemeForm(data=request.POST or None, instance=theme)
+    form = ThemeDisplayForm(data=request.POST or None, instance=theme)
     language = 'python'
 
     return respond(request, user, 'themes/new', {
@@ -205,4 +208,16 @@ class ThemeForm(djangoforms.ModelForm):
             'modified',
             'description',
             'num_downloads'
+        ]
+
+class ThemeDisplayForm(djangoforms.ModelForm):
+    class Meta:
+        model = Theme
+        exclude = [
+            'author',
+            'created',
+            'modified',
+            'description',
+            'num_downloads',
+            'name'
         ]

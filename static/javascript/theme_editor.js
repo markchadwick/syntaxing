@@ -1,3 +1,21 @@
+////////////////////////////////////////////////////////////////////////////////
+// Helpers
+$.fn.escapeHtml = function() {
+        this.each(function() {
+            $(this).html(
+                $(this).html()
+                    .replace(/"/g,"&quot;")
+                    .replace(/</g,"&lt;")
+                    .replace(/>/g,"&gt;")
+                    .replace(/&/g,"&amp;")
+            );
+        });
+        return $(this);
+    }
+
+////////////////////////////////////////////////////////////////////////////////
+// Theme Editor
+
 jQuery.theme_editor = function (container, picker, title) {
     var container = $(container).get(0);
     return container.theme_editor || 
@@ -16,7 +34,7 @@ jQuery._theme_editor = function(container, picker, title) {
     editor._bind_container = function() {
         $(container).html([
             '<div id="editor">',
-                '<div id="title">' + title +'</div>',
+                '<div id="editor_title">' + title +'</div>',
                 '<div id="body">',
                     '<div id="code_view" class="background"></div>',
                 '</div>',
@@ -111,17 +129,30 @@ $(document).ready(function() {
      * Cute, toggling name field
      */
     var _theme_name_form = $('#id_name');
+    var _default_value = "Theme Name";
+    var val;
+    
     function _changed() {
-        var _default_value = "Theme Name";
-        if(!this.value || this.value == "" || this.value == _default_value) {
-            _theme_name_form.css('color', '#666');
-            this.value = _default_value;
+        val = _theme_name_form.val();
+        
+        if(!val || val == "" || val == _default_value) {
+            _theme_name_form.css('color', '#ccc').val(_default_value);
         } else {
             _theme_name_form.css('color', '#000');
-            console.log("Value:", this.value);
+        }
+        
+        $('#editor_title').html(_theme_name_form.val());
+    }
+    
+    function _clicked(event) {
+        _changed();
+        if(!val || val == "" || val == _default_value) {
+            _theme_name_form.val("").css('color', '#000');
         }
     }
-    _theme_name_form.change(_changed).click(_changed).ready(_changed);
+    _theme_name_form.change(_changed).click(_clicked).ready(_changed);
+    $('#editor_title').html(_theme_name_form.val());
+
 });
 
 

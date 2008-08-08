@@ -9,7 +9,7 @@
     padding:        0 20px 0 0;
 }
 
-#theme_editor #title {
+#theme_editor #editor_title {
     height:         18px;
     background:     url(/static/images/editor/toolbar_left.png) no-repeat top left;
     font-weight:    bold;
