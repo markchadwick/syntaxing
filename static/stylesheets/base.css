@@ -124,6 +124,22 @@ ul.theme_list li.theme div.about {
 }
 
 /*
+ * Styling
+ */
+h2.info {
+    text-align:         center;
+    background:         #fffef0;
+    border:             1px solid #ccc;
+    margin:             2px 18px;
+    padding:            5px;
+}
+
+.biginput {
+    margin:             0 18px;
+    font-size:          200%;
+}
+
+/*
  * Download
  */
 ul.download {

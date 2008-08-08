@@ -20,8 +20,9 @@ urlpatterns = patterns('',
     (r'^tokenize$',     tokenize),
     (r'^snippet$',      snippet),
     
-    (r'^(?P<theme_id>\d+)/theme.css',       css),
-    (r'^(?P<theme_id>\d+)/theme.vim',       vim),
-    (r'^(?P<theme_id>\d+)/theme.ess',       editra),
-    (r'^(?P<theme_id>\d+)/theme.tmTheme',   textmate),
+    (r'^(?P<theme_id>\d+)/theme.css',         css),
+    (r'^(?P<theme_id>\d+)/theme.vim',         vim),
+    (r'^(?P<theme_id>\d+)/theme.ess',         editra),
+    (r'^(?P<theme_id>\d+)/theme.tmTheme',     textmate),
+    (r'^(?P<theme_id>\d+)/theme.pygment.css', pygment),
 )

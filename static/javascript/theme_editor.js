@@ -25,7 +25,6 @@ jQuery._theme_editor = function(container, picker, title) {
     }
     
     editor._reload_theme = function() {
-        console.log("Word!");
         $('#syntax p input').each(function(i, element) {
             var name = element.name;
                         
@@ -107,6 +106,22 @@ $(document).ready(function() {
             theme_editor._load_highlighted_code();
         });
     });
+        
+    /*
+     * Cute, toggling name field
+     */
+    var _theme_name_form = $('#id_name');
+    function _changed() {
+        var _default_value = "Theme Name";
+        if(!this.value || this.value == "" || this.value == _default_value) {
+            _theme_name_form.css('color', '#666');
+            this.value = _default_value;
+        } else {
+            _theme_name_form.css('color', '#000');
+            console.log("Value:", this.value);
+        }
+    }
+    _theme_name_form.change(_changed).click(_changed).ready(_changed);
 });
 
 

@@ -14,6 +14,7 @@ from google.appengine.ext.db import djangoforms
 from lib.syntax import lexers
 from lib.syntax import tokenize as tokenize_to_html
 from lib.syntax.snippets import SNIPPETS
+from lib.syntax.pygment import theme_to_css as pygmentize
 
 from views import respond
 from models.theme import Theme
@@ -180,6 +181,15 @@ def textmate(request, theme_id):
         'theme': theme
     }))
     response['Content-Type'] = "text/plain; charset=utf-8"
+    return response
+
+def pygment(request, theme_id):
+    theme = Theme.get(db.Key.from_path(Theme.kind(), int(theme_id)))
+    theme.num_downloads += 1
+    theme.save()
+    
+    response = HttpResponse(pygmentize(theme))
+    response['Content-Type'] = "text/css; charset=utf-8"
     return response
 
 # ------------------------------------------------------------------------------
