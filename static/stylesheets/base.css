@@ -164,3 +164,6 @@ ul.download li.editra {
 ul.download li.textmate {
     background:         url(/static/images/icons/textmate.png) no-repeat top left;
 }
+ul.download li.pygments {
+    background:         url(/static/images/icons/pygments.png) no-repeat top left;
+}
