@@ -123,6 +123,22 @@ ul.theme_list li.theme div.about {
     color:              #999;
 }
 
+ul.small_theme_list {
+    list-style-type:    none;
+    margin:             2px 0 12px 5px;
+    padding:            0;
+    overflow:           hidden;
+}
+ul.small_theme_list li {
+    margin:             2px 0;
+}
+ul.small_theme_list li a {
+    text-decoration:    none;
+}
+ul.small_theme_list li a:hover {
+    text-decoration:    underline;         
+}
+
 /*
  * Styling
  */

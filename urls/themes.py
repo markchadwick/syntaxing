@@ -5,6 +5,7 @@
 from django.conf.urls.defaults import *
 
 from views.themes import *
+import views.theme_representations as rep
 
 # ------------------------------------------------------------------------------
 # Globals
@@ -20,9 +21,11 @@ urlpatterns = patterns('',
     (r'^tokenize$',     tokenize),
     (r'^snippet$',      snippet),
     
-    (r'^(?P<theme_id>\d+)/theme.css',         css),
-    (r'^(?P<theme_id>\d+)/theme.vim',         vim),
-    (r'^(?P<theme_id>\d+)/theme.ess',         editra),
-    (r'^(?P<theme_id>\d+)/theme.tmTheme',     textmate),
-    (r'^(?P<theme_id>\d+)/theme.pygment.css', pygment),
+    (r'^(?P<theme_id>\d+)/rate',    rate),
+    
+    (r'^(?P<theme_id>\d+)/theme.css',         rep.css),
+    (r'^(?P<theme_id>\d+)/theme.vim',         rep.vim),
+    (r'^(?P<theme_id>\d+)/theme.ess',         rep.editra),
+    (r'^(?P<theme_id>\d+)/theme.tmTheme',     rep.textmate),
+    (r'^(?P<theme_id>\d+)/theme.pygment.css', rep.pygment),
 )

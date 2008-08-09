@@ -6,12 +6,12 @@ from pygments.lexers import get_lexer_by_name
 from pygments.lexers._mapping import LEXERS
 from pygments.token import Token
 
-from lib.syntax.conversion import pygment_type_to_syntaxing
+from lib.syntax.conversion import pygment_token_to_syntaxing
 
 
 class SyntaxingHTMLFormatter(HtmlFormatter):
     def _get_css_class(self, pygment_type):
-        return pygment_type_to_syntaxing(pygment_type)
+        return pygment_token_to_syntaxing(pygment_type)
 
 def lexers():
     lexers = []

@@ -35,6 +35,16 @@ def list(request):
         'user':     user
     })
 
+def rate(request, theme_id):
+    user = users.GetCurrentUser()
+    theme = Theme.get(db.Key.from_path(Theme.kind(), int(theme_id)))
+    rating = request.POST.get('rating', 0.0)
+    
+    theme.rate(rating)
+    theme.save()
+
+    return HttpResponse()
+
 def get(request, theme_id):
     user = users.GetCurrentUser()
     theme = Theme.get(db.Key.from_path(Theme.kind(), int(theme_id)))
@@ -138,62 +148,6 @@ def tokenize(request):
     
     return http.HttpResponse(tokenize_to_html(code, language))
 
-# ------------------------------------------------------------------------------
-# Theme Representations
-# ------------------------------------------------------------------------------
-
-def css(request, theme_id):
-    theme = Theme.get(db.Key.from_path(Theme.kind(), int(theme_id)))
-    theme.num_downloads += 1
-    theme.save()
-
-    response = HttpResponse(loader.render_to_string('themes/representations/theme.css', {
-        'theme': theme
-    }))
-    response['Content-Type'] = "text/css; charset=utf-8"
-    return response
-
-def vim(request, theme_id):
-    theme = Theme.get(db.Key.from_path(Theme.kind(), int(theme_id)))
-    theme.num_downloads += 1
-    theme.save()
-
-    response = HttpResponse(loader.render_to_string('themes/representations/theme.vim', {
-        'theme': theme
-    }))
-    response['Content-Type'] = "text/plain; charset=utf-8"
-    return response
-    
-def editra(request, theme_id):
-    theme = Theme.get(db.Key.from_path(Theme.kind(), int(theme_id)))
-    theme.num_downloads += 1
-    theme.save()
-    
-    response = HttpResponse(loader.render_to_string('themes/representations/theme.ess', {
-        'theme': theme
-    }))
-    response['Content-Type'] = "text/plain; charset=utf-8"
-    return response
-    
-def textmate(request, theme_id):
-    theme = Theme.get(db.Key.from_path(Theme.kind(), int(theme_id)))
-    theme.num_downloads += 1
-    theme.save()
-    
-    response = HttpResponse(loader.render_to_string('themes/representations/theme.tmTheme', {
-        'theme': theme
-    }))
-    response['Content-Type'] = "text/plain; charset=utf-8"
-    return response
-
-def pygment(request, theme_id):
-    theme = Theme.get(db.Key.from_path(Theme.kind(), int(theme_id)))
-    theme.num_downloads += 1
-    theme.save()
-    
-    response = HttpResponse(pygmentize(theme))
-    response['Content-Type'] = "text/css; charset=utf-8"
-    return response
 
 # ------------------------------------------------------------------------------
 # Forms
@@ -207,17 +161,24 @@ class ThemeForm(djangoforms.ModelForm):
             'created',
             'modified',
             'description',
-            'num_downloads'
+            'num_downloads',
+            'num_votes',
+            'vote_total',
+            'score',
         ]
 
 class ThemeDisplayForm(djangoforms.ModelForm):
     class Meta:
         model = Theme
         exclude = [
+            'name',
+            
             'author',
             'created',
             'modified',
             'description',
             'num_downloads',
-            'name'
+            'num_votes',
+            'vote_total',
+            'score',
         ]

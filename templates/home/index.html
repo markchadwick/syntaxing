@@ -5,15 +5,20 @@
 <div id="sidebar">
     <div class="portlet">
         <h3>Highest Ranked</h3>
+        <ul class="highest_ranked small_theme_list">
+            {% for theme in highest_ranked %}
+                <li><a href="{% url views.themes.get theme.key.id %}">{{ theme.name|escape }}</a></li>
+            {% endfor %}
+        </ul><!-- .highest_ranked -->
     </div><!-- .portlet -->
     
     <div class="portlet">
         <h3>Most Downloaded</h3>
-        <ul class="most_downloaded">
+        <ul class="most_downloaded small_theme_list">
             {% for theme in most_downloaded %}
-                <li>{{ theme.name }}</li>
+                <li><a href="{% url views.themes.get theme.key.id %}">{{ theme.name|escape }}</a></li>
             {% endfor %}
-        </ul>
+        </ul><!-- .most_downloaded -->
     </div><!-- .portlet -->
     
     <div class="portlet">

@@ -135,8 +135,14 @@ _PYGMENT_TOKEN_TO_SYNTAXING = {
     t.Name.Variable.Instance:   'instance_variable',
 }
 
-def pygment_type_to_syntaxing(pygment_type):
+def pygment_token_to_syntaxing(pygment_type):
     try:
         return _PYGMENT_TOKEN_TO_SYNTAXING[pygment_type]
+    except KeyError:
+        return 'text'
+
+def pygment_css_to_syntaxing(pygment_css):
+    try:
+        return pygment_token_to_syntaxing(_PYGMENT_CLASS_TO_PYGMENT_TOKEN[pygment_css])
     except KeyError:
         return 'text'

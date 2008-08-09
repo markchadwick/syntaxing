@@ -16,5 +16,6 @@ from models.theme import Theme
 def index(request):
     user = users.GetCurrentUser()
     return respond(request, user, 'home/index', {
-        'most_downloaded':  Theme.most_downloaded()
+        'highest_ranked':   Theme.highest_ranked(),
+        'most_downloaded':  Theme.most_downloaded(),
     })

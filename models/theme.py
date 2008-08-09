@@ -4,7 +4,7 @@ from models.rating import HasRating
 
 class Theme(db.Model, HasRating):
     # --------------------------------------------------------------------------
-    # Meta data
+    # Metadata
     # --------------------------------------------------------------------------
     
     name      = db.StringProperty(required=True)
@@ -15,6 +15,13 @@ class Theme(db.Model, HasRating):
     description     = db.TextProperty("Description")
     num_downloads   = db.IntegerProperty("Number of Downloads", default=0)
 
+    # --------------------------------------------------------------------------
+    # Rating Fields
+    # --------------------------------------------------------------------------
+
+    num_votes   = db.IntegerProperty(default=0)
+    vote_total  = db.FloatProperty(default=0.0)	
+    score       = db.FloatProperty(default=0.0)
 
     background_bg  = db.StringProperty("Background",   default="#ffffff")
     
@@ -133,7 +140,7 @@ class Theme(db.Model, HasRating):
 
     @classmethod
     def highest_ranked(self, limit=10):
-        return []
+        return db.GqlQuery('SELECT * FROM Theme ORDER BY score DESC').fetch(limit=limit)
 
     @classmethod
     def most_downloaded(self, limit=10):
