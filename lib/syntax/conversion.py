@@ -68,3 +68,75 @@ _PYGMENT_CLASS_TO_PYGMENT_TOKEN = {
     'vg':   t.Name.Variable.Global,
     'vi':   t.Name.Variable.Instance,
 }
+
+_PYGMENT_TOKEN_TO_SYNTAXING = {
+    t.Text:     'text',
+    t.Name:     'name',
+    t.Comment:  'comment',
+    t.Error:    'error',
+    t.Operator: 'operator',
+    
+    t.Comment.Multiline:    'comment',
+    t.Comment.Preproc:      'comment',
+    t.Comment.Single:       'comment',
+    
+    t.Generic.Deleted:      'text',
+    t.Generic.Emph:         'text',
+    t.Generic.Error:        'error',
+    t.Generic.Heading:      'text',
+    t.Generic.Inserted:     'text',
+    t.Generic.Output:       'text',
+    t.Generic.Prompt:       'text',
+    t.Generic.Strong:       'text',
+    t.Generic.Traceback:    'text',
+    
+    t.Keyword:              'keyword',
+    t.Keyword.Contant:      'constant',
+    t.Keyword.Delclaration: 'keyword',
+    t.Keyword.Pseudo:       'pseudo',
+    t.Keyword.Reserved:     'reserved',
+    t.Keyword.Type:         'type',
+    
+    t.Literal.Number:               'number',
+    t.Literal.Number.Float:         'number',
+    t.Literal.Number.Hex:           'number',
+    t.Literal.Number.Integer:       'number',
+    t.Literal.Number.Integer.Long:  'number',
+    t.Literal.Number.Oct:           'number',
+    
+    t.Literal.String:           'string',
+    t.Literal.String.Char:      'string',
+    t.Literal.String.Double:    'string',
+    t.Literal.String.Escape:    'string',
+    t.Literal.String.Heredoc:   'string',
+    t.Literal.String.Interpol:  'string',
+    t.Literal.String.Other:     'string',
+    t.Literal.String.Regex:     'string',
+    t.Literal.String.Single:    'string',
+    t.Literal.String.Symbol:    'string',
+    
+    t.Name.Attribute:   'attribute',
+    t.Name.Builtin:     'builtin',
+    t.Name.Class:       'class',
+    t.Name.Constant:    'constant',
+    t.Name.Decorator:   'decorator',
+    t.Name.Entity:      'entity',
+    t.Name.Exception:   'exception',
+    t.Name.Function:    'function',
+    t.Name.Label:       'text',
+    t.Name.Namespace:   'namespace',
+    t.Name.Tag:         'text',
+    t.Name.Word:        'text',
+    
+    t.Operator.Word:            'text',
+    t.Name.Builtin.Pseudo:      'pseudo',
+    t.Name.Variable.Class:      'class',
+    t.Name.Variable.Global:     'variable',
+    t.Name.Variable.Instance:   'instance_variable',
+}
+
+def pygment_type_to_syntaxing(pygment_type):
+    try:
+        return _PYGMENT_TOKEN_TO_SYNTAXING[pygment_type]
+    except KeyError:
+        return 'text'
