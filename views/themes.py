@@ -37,7 +37,7 @@ def list(request):
 
 def rate(request, theme_id):
     user = users.GetCurrentUser()
-    theme = Theme.get(db.Key.from_path(Theme.kind(), int(theme_id)))
+    theme = Theme.theme(theme_id=theme_id)
     rating = request.POST.get('rating', 0.0)
     
     theme.rate(rating)
@@ -47,7 +47,7 @@ def rate(request, theme_id):
 
 def get(request, theme_id):
     user = users.GetCurrentUser()
-    theme = Theme.get(db.Key.from_path(Theme.kind(), int(theme_id)))
+    theme = Theme.theme(theme_id=theme_id)
     lang = 'python'
     
     return respond(request, user, 'themes/theme', {
@@ -66,7 +66,7 @@ def edit(request, theme_id):
 
     if theme_id:
         editing = True
-        theme = Theme.get(db.Key.from_path(Theme.kind(), int(theme_id)))
+        theme = Theme.theme(theme_id=theme_id)
         
         if theme is None:
             return http.HttpResponseNotFound('No theme exists with that key (%r)' %

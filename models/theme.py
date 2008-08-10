@@ -1,5 +1,7 @@
 from google.appengine.ext import db
 
+from lib.cache import cached
+
 from models.rating import HasRating
 
 class Theme(db.Model, HasRating):
@@ -139,13 +141,20 @@ class Theme(db.Model, HasRating):
     # --------------------------------------------------------------------------
 
     @classmethod
+    @cached('highest_ranked', expire=60*5)
     def highest_ranked(self, limit=6):
         return db.GqlQuery('SELECT * FROM Theme ORDER BY score DESC').fetch(limit=limit)
 
     @classmethod
+    @cached('most_downloaded', expire=60*5)
     def most_downloaded(self, limit=6):
         return db.GqlQuery('SELECT * FROM Theme ORDER BY num_downloads DESC').fetch(limit=limit)
 
+    @classmethod
+    @cached('theme', identifier='theme_id')
+    def theme(self, theme_id=None):
+        return self.get(db.Key.from_path(Theme.kind(), int(theme_id)))
+        
     # --------------------------------------------------------------------------
     # Public Methods
     # --------------------------------------------------------------------------

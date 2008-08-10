@@ -8,10 +8,28 @@
     {% if theme.text_bl %}font-weight:bold;{% endif %}
 }
 
+#code_view .name {
+    color:          {{ theme.name_fg }};
+    {% if theme.name_it %}font-style:italic;{% endif %}
+    {% if theme.name_bl %}font-weight:bold;{% endif %}
+}
+
 #code_view .comment {
     color:          {{ theme.comment_fg }};
     {% if theme.comment_it %}font-style:italic;{% endif %}
     {% if theme.comment_bl %}font-weight:bold;{% endif %}
+}
+
+#code_view .error {
+    color:          {{ theme.error_fg }};
+    {% if theme.error_it %}font-style:italic;{% endif %}
+    {% if theme.error_bl %}font-weight:bold;{% endif %}
+}
+
+#code_view .operator {
+    color:          {{ theme.error_fg }};
+    {% if theme.operator_it %}font-style:italic;{% endif %}
+    {% if theme.operator_bl %}font-weight:bold;{% endif %}
 }
 
 #code_view .keyword {
@@ -20,10 +38,28 @@
     {% if theme.keyword_bl %}font-weight:bold;{% endif %}
 }
 
-#code_view .string {
-    color:          {{ theme.string_fg }};
-    {% if theme.string_it %}font-style:italic;{% endif %}
-    {% if theme.string_bl %}font-weight:bold;{% endif %}
+#code_view .comment {
+    color:          {{ theme.comment_fg }};
+    {% if theme.comment_it %}font-style:italic;{% endif %}
+    {% if theme.comment_bl %}font-weight:bold;{% endif %}
+}
+
+#code_view .reserved {
+    color:          {{ theme.reserved_fg }};
+    {% if theme.reserved_it %}font-style:italic;{% endif %}
+    {% if theme.reserved_bl %}font-weight:bold;{% endif %}
+}
+
+#code_view .type {
+    color:          {{ theme.type_fg }};
+    {% if theme.type_it %}font-style:italic;{% endif %}
+    {% if theme.type_bl %}font-weight:bold;{% endif %}
+}
+
+#code_view .pseudo {
+    color:          {{ theme.pseudo_fg }};
+    {% if theme.pseudo_it %}font-style:italic;{% endif %}
+    {% if theme.pseudo_bl %}font-weight:bold;{% endif %}
 }
 
 #code_view .number {
@@ -32,16 +68,46 @@
     {% if theme.number_bl %}font-weight:bold;{% endif %}
 }
 
-#code_view .class {
-    color:          {{ theme.class_fg }};
-    {% if theme.class_it %}font-style:italic;{% endif %}
-    {% if theme.class_bl %}font-weight:bold;{% endif %}
+#code_view .string {
+    color:          {{ theme.string_fg }};
+    {% if theme.string_it %}font-style:italic;{% endif %}
+    {% if theme.string_bl %}font-weight:bold;{% endif %}
+}
+
+#code_view .attribute {
+    color:          {{ theme.attribute_fg }};
+    {% if theme.attribute_it %}font-style:italic;{% endif %}
+    {% if theme.attribute_bl %}font-weight:bold;{% endif %}
 }
 
 #code_view .builtin {
     color:          {{ theme.builtin_fg }};
     {% if theme.builtin_it %}font-style:italic;{% endif %}
     {% if theme.builtin_bl %}font-weight:bold;{% endif %}
+}
+
+#code_view .class {
+    color:          {{ theme.class_fg }};
+    {% if theme.class_it %}font-style:italic;{% endif %}
+    {% if theme.class_bl %}font-weight:bold;{% endif %}
+}
+
+#code_view .decorator {
+    color:          {{ theme.decorator_fg }};
+    {% if theme.decorator_it %}font-style:italic;{% endif %}
+    {% if theme.decorator_bl %}font-weight:bold;{% endif %}
+}
+
+#code_view .entity {
+    color:          {{ theme.entity_fg }};
+    {% if theme.entity_it %}font-style:italic;{% endif %}
+    {% if theme.entity_bl %}font-weight:bold;{% endif %}
+}
+
+#code_view .exception {
+    color:          {{ theme.exception_fg }};
+    {% if theme.exception_it %}font-style:italic;{% endif %}
+    {% if theme.exception_bl %}font-weight:bold;{% endif %}
 }
 
 #code_view .function {
@@ -56,15 +122,14 @@
     {% if theme.namespace_bl %}font-weight:bold;{% endif %}
 }
 
-#code_view .pseudo {
-    color:          {{ theme.pseudo_fg }};
-    {% if theme.pseudo_it %}font-style:italic;{% endif %}
-    {% if theme.pseudo_bl %}font-weight:bold;{% endif %}
+#code_view .variable {
+    color:          {{ theme.variable_fg }};
+    {% if theme.variable_it %}font-style:italic;{% endif %}
+    {% if theme.variable_bl %}font-weight:bold;{% endif %}
 }
 
-#code_view .decorator {
-    color:          {{ theme.decorator_fg }};
-    {% if theme.decorator_it %}font-style:italic;{% endif %}
-    {% if theme.decorator_bl %}font-weight:bold;{% endif %}
+#code_view .instance_variable {
+    color:          {{ theme.instance_variable_fg }};
+    {% if theme.instance_variable_it %}font-style:italic;{% endif %}
+    {% if theme.instance_variable_bl %}font-weight:bold;{% endif %}
 }
-
