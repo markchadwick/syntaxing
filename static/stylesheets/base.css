@@ -123,6 +123,26 @@ ul.theme_list li.theme div.about {
     color:              #999;
 }
 
+ul.small_theme_list li.theme {
+    height:             20px;
+    overflow:           hidden;
+}
+ul.small_theme_list li.theme .thumbnail {
+    height:             9px;
+    width:              10px;
+    float:              left;
+    margin:             0 5px 0 0;
+    padding:            3px;
+    overflow:           hidden;
+}
+ul.small_theme_list li.theme .thumbnail .field {
+    width:              3px;
+    height:             3px;
+    margin:             0;
+    padding:            0;
+    float:              left;
+}
+
 ul.small_theme_list {
     list-style-type:    none;
     margin:             2px 0 12px 5px;

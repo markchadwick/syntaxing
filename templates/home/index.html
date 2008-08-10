@@ -7,7 +7,7 @@
         <h3>Highest Ranked</h3>
         <ul class="highest_ranked small_theme_list">
             {% for theme in highest_ranked %}
-                <li><a href="{% url views.themes.get theme.key.id %}">{{ theme.name|escape }}</a></li>
+                <li class="theme">{% thumbnail theme %}<a href="{% url views.themes.get theme.key.id %}">{{ theme.name|escape }}</a></li>
             {% endfor %}
         </ul><!-- .highest_ranked -->
     </div><!-- .portlet -->
@@ -16,7 +16,7 @@
         <h3>Most Downloaded</h3>
         <ul class="most_downloaded small_theme_list">
             {% for theme in most_downloaded %}
-                <li><a href="{% url views.themes.get theme.key.id %}">{{ theme.name|escape }}</a></li>
+                <li class="theme">{% thumbnail theme %}<a href="{% url views.themes.get theme.key.id %}">{{ theme.name|escape }}</a></li>
             {% endfor %}
         </ul><!-- .most_downloaded -->
     </div><!-- .portlet -->

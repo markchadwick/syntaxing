@@ -139,11 +139,11 @@ class Theme(db.Model, HasRating):
     # --------------------------------------------------------------------------
 
     @classmethod
-    def highest_ranked(self, limit=10):
+    def highest_ranked(self, limit=6):
         return db.GqlQuery('SELECT * FROM Theme ORDER BY score DESC').fetch(limit=limit)
 
     @classmethod
-    def most_downloaded(self, limit=10):
+    def most_downloaded(self, limit=6):
         return db.GqlQuery('SELECT * FROM Theme ORDER BY num_downloads DESC').fetch(limit=limit)
 
     # --------------------------------------------------------------------------

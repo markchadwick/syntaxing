@@ -2,15 +2,11 @@
 
 {% block body %}
 <a href="{% url views.themes.new %}">Create new theme</a>
+
 <ul class="theme_list">
     {% for theme in themes %}
         <li class="theme">
-            <div class="thumbnail" style="{{ theme.thumbnail_style }}">
-                {% for field in theme.thumbnail_fields %}
-                    <div class="field" style="background:{{ field }}">&nbsp;</div>
-                {% endfor %}
-            </div>
-            
+            {% thumbnail theme %}
             <a href="{% url views.themes.get theme.key.id %}" class="title">{{ theme.name|escape }}</a>
             <div class="about">
                 Created {{theme.created|date:"Y/m/d H:i"}} 

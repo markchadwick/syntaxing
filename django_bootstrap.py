@@ -28,8 +28,7 @@ import logging
 import __builtin__
 
 # Google App Hosting imports.
-from google.appengine.ext.webapp import util
-
+from google.appengine.ext.webapp import util, template
 import pickle
 sys.modules['cPickle'] = pickle
 
@@ -55,8 +54,14 @@ except ImportError:
 # Import the part of Django that we use here.
 import django.core.handlers.wsgi
 from django.conf import settings
+
+
 settings._target = None
 
+#
+# Register Template Tags
+#
+template.register_template_library('templatetags.tags')
 def main():
   # Create a Django application for WSGI.
   application = django.core.handlers.wsgi.WSGIHandler()
