@@ -2,14 +2,58 @@
 <!DOCTYPE plist PUBLIC "-//Apple Computer//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-    <key>name</key>
-    <string>{{ theme.name|escape }}</string>
-    <key>settings</key>
-    <array>
-        <dict>
-            <key>background</key>
-            <string>{{ theme.background_bg }}</string>
-        </dict>
+
+    {% if theme.author %}
+        <key>author</key>
+        <string>{{ theme.author.nickname|escape }}</string>
+    {% endif %}
+	<key>name</key>
+	<string>{{ theme.name|escape }}</string>
+	<key>settings</key>
+	<array>
+		<dict>
+			<key>settings</key>
+			<dict>
+                <key>background</key>
+                <string>{{ theme.background_bg|upper }}</string>
+                <key>caret</key>
+                <string>#FFFFFF</string>
+                <key>foreground</key>
+                <string>{{ theme.text_fg|upper }}</string>
+                <key>invisibles</key>
+                <string>{{ theme.background_bg|upper }}</string>
+                <key>lineHighlight</key>
+                <string>{{ theme.background_bg|upper }}</string>
+                <key>selection</key>
+                <string>#EEEEEE</string>
+			</dict>
+		</dict>
+
+{% tm_theme 'Name'          'entity.name'       theme   'name' %}
+{% tm_theme 'Comment'       'comment'           theme   'comment' %}
+{% tm_theme 'Invalid'       'invalid'           theme   'error' %}
+{% tm_theme 'Operator'      'keyword.operator'  theme   'operator' %}
+
+{% tm_theme 'Keyword'       'keyword, storage'  theme   'keyword' %}
+{% tm_theme 'Constant'      'constant'          theme   'constant' %}
+{% tm_theme 'Reserved'      'keyword.other'     theme   'reserved' %}
+{% tm_theme 'Type'          'support.type'      theme   'type' %}
+{% tm_theme 'Pseudo'        'variable.other'    theme   'pseudo' %}
+
+{% tm_theme 'Number'        'constant.numeric'  theme   'number' %}
+{% tm_theme 'String'        'string'            theme   'string' %}
+
+{% tm_theme 'Attribute'     'entity.other'      theme   'attribute' %}
+{% tm_theme 'Built-in'      'constant.language' theme   'builtin' %}
+{% tm_theme 'Class'         'entity.name.type'  theme   'class' %}
+{% tm_theme 'Decorator'     'meta.function.decorator' theme 'decorator' %}
+{% tm_theme 'Entity'        'entity'            theme   'entity' %}
+{% tm_theme 'Function'      'meta.function'     theme   'function' %}
+
+{% tm_theme 'Variable'      'variable'          theme   'variable' %}
+{% tm_theme 'Instance Variable' 'variable.other.readwrite.instance' theme 'instance_variable' %}
     </array>
+    <key>uuid</key>
+    <string>12345678-1948-1888-6483-111122223333</string>
 </dict>
 </plist>

@@ -7,7 +7,7 @@ from pygments.lexers._mapping import LEXERS
 from pygments.token import Token
 
 from lib.syntax.conversion import pygment_token_to_syntaxing
-
+from lib.cache import cached
 
 class SyntaxingHTMLFormatter(HtmlFormatter):
     def _get_css_class(self, pygment_type):
@@ -25,3 +25,4 @@ def lexers():
 
 def tokenize(code_string, language='python'):
     return highlight(code_string, get_lexer_by_name(language), SyntaxingHTMLFormatter())
+    
