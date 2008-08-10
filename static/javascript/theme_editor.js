@@ -120,7 +120,7 @@ $(document).ready(function() {
             'language': element.value
         }, function(data) {
             $('#language').html(element.value);
-            $('#code').html(data);
+            $('#code').text(data);
             theme_editor._load_highlighted_code();
         });
     });
