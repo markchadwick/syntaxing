@@ -27,6 +27,6 @@ def about(request):
     return respond(request, user, 'home/about')
 
 #@cached('feedback.html', expire=(60 * 60))
-def feedback(request)
+def feedback(request):
     user = users.GetCurrentUser()
     return respond(request, user, 'home/feedback')

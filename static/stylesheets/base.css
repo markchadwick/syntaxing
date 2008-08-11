@@ -32,14 +32,6 @@ body {
 }
 
 /*
- * Login
- */
-.login {
-    font-size:      90%;
-    color:          #666;
-}
-
-/*
  * Layout
  */
 
@@ -80,6 +72,20 @@ body {
     margin:         0;
     padding:        0;
     border-bottom:  1px solid #eee;
+}
+
+/*
+ * Footer
+ */
+ul#footer {
+    clear:          both;
+    font-size:      90%;
+    margin:         10px 0 0 0;
+    padding:        0;
+}
+
+ul#footer li {
+    float:          left;
 }
 
 /*
