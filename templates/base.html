@@ -2,29 +2,21 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html>
   <head>
-    <link type="text/css" rel="stylesheet" href="/static/stylesheets/base.css"/>
-    <script type="text/javascript" src="/static/javascript/jquery.js"/></script>
+    <link type="text/css" rel="stylesheet" href="/static/stylesheets/base.css?v=1"/>
+    <script type="text/javascript" src="/static/javascript/jquery.js?v=1"/></script>
     {% block head %}{% endblock %}
     <title>Syntaxing</title>
   </head>
   <body>
     <div id="body">
-        <div class="login">
-            {%if user %}
-                <b>{{user.nickname}}</b>
-                {%if is_admin%} | <a href="/_ah/admin">Admin</a>{%endif%}
-                {%if sign_out%} | <a href="{{sign_out}}">Sign out</a>{%endif%}
-            {% else %}
-                {%if sign_in%}<a href="{{sign_in}}">Sign in</a>{%endif%}
-            {%endif%}
-        </div>
         <div id="header">
             <a href="/"><img src="/static/images/syntaxing.png"/></a>
         </div><!-- #header -->
         
         <div id="navigation">
             <ul>
-                <li><a href="/themes/">Themes</a></li>
+                <li><a href="/themes/">Recent Themes</a></li>
+                <li><a href="/themes/new">Make a new Theme</a></li>
             </ul>
         </div><!-- #navigation -->
         
@@ -32,5 +24,13 @@
             {% block body %}{% endblock %}
         </div><!-- #content -->
     </div><!-- #content -->
+    <script type="text/javascript">
+        var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+        document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+    </script>
+    <script type="text/javascript">
+        var pageTracker = _gat._getTracker("UA-68181-5");
+        pageTracker._trackPageview();
+    </script>
   </body>
 </html>

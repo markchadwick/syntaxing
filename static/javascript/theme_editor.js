@@ -129,7 +129,7 @@ $(document).ready(function() {
      * Cute, toggling name field
      */
     var _theme_name_form = $('#id_name');
-    var _default_value = "Theme Name";
+    var _default_value = "Untitled Theme";
     var val;
     
     function _changed() {

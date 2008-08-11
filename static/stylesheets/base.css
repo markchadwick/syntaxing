@@ -91,9 +91,10 @@ ul.theme_list {
     padding:            0;
 }
 ul.theme_list li.theme {
-    border-top:         1px solid #eee;
+    border-bottom:      1px solid #eee;
     height:             55px;
     padding:            5px;
+    overflow:           hidden;
 }
 ul.theme_list li.theme .thumbnail {
     height:             42px;
@@ -120,7 +121,7 @@ ul.theme_list li.theme a.title:hover {
     text-decoration:    underline;
 }
 ul.theme_list li.theme div.about {
-    color:              #999;
+    color:              #ccc;
 }
 
 ul.small_theme_list li.theme {
@@ -157,6 +158,31 @@ ul.small_theme_list li a {
 }
 ul.small_theme_list li a:hover {
     text-decoration:    underline;         
+}
+
+/*
+ * Pagination
+ */
+ul.pagination {
+    list-style-type:    none;
+    margin:             10px 0 0 0;
+    padding:            0;
+}
+ul.pagination li {
+    float:              left;
+    padding:            3px;
+    margin:             2px;
+}
+ul.pagination li.active {
+    background:         #fec;
+    font-weight:        bold;
+    padding:            3px;
+}
+ul.pagination li a {
+    text-decoration:    none;
+}
+ul.pagination li a:hover {
+    text-decoration:    underline;
 }
 
 /*

@@ -4,15 +4,6 @@
 
 <div id="sidebar">
     <div class="portlet">
-        <h3>Highest Ranked</h3>
-        <ul class="highest_ranked small_theme_list">
-            {% for theme in highest_ranked %}
-                <li class="theme">{% thumbnail theme %}<a href="{% url views.themes.get theme.key.id %}">{{ theme.name|escape }}</a></li>
-            {% endfor %}
-        </ul><!-- .highest_ranked -->
-    </div><!-- .portlet -->
-    
-    <div class="portlet">
         <h3>Most Downloaded</h3>
         <ul class="most_downloaded small_theme_list">
             {% for theme in most_downloaded %}
@@ -26,8 +17,7 @@
     <h1>Let's Make a Theme</h1>
     <p>
         It's pretty damn easy to make a new syntaxing highlighting theme for the
-        text editor of your choice.  Of couse, we don't support them all, but
-        we're working on that. [TODO]
+        text editor of your choice.  Give it a shot.  What are you, chicken?
     </p>
 </div>
 

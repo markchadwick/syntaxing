@@ -1,6 +1,7 @@
 # ------------------------------------------------------------------------------
 # Imports
 # ------------------------------------------------------------------------------
+import urllib
 
 from django import http
 from django import shortcuts
@@ -58,7 +59,9 @@ def textmate(request, theme_id):
     response = HttpResponse(loader.render_to_string('themes/representations/theme.tmTheme', {
         'theme': theme
     }))
-    response['Content-Type'] = "text/plain; charset=utf-8"
+    
+    response['Content-Type'] = "application/octet-stream; charset=utf-8"
+    response['Content-Disposition'] = "attachment; filename=%s.tmTheme" % urllib.urlencode(theme.name)
     return response
 
 def pygment(request, theme_id):

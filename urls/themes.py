@@ -13,13 +13,14 @@ import views.theme_representations as rep
 
 
 urlpatterns = patterns('',
-    (r'^$',             list),
-    (r'^(\d+)$',        get),
-    (r'^create$',       create),
-    (r'^new$',          new),
-    (r'^edit/(\d+)$',   edit),
-    (r'^tokenize$',     tokenize),
-    (r'^snippet$',      snippet),
+    (r'^$',                     list),
+    (r'^page/(?P<page>\d+)$',   list),
+    
+    (r'^(?P<theme_id>\d+)$',    get),
+    (r'^create$',               create),
+    (r'^new$',                  new),
+    (r'^tokenize$',             tokenize),
+    (r'^snippet$',              snippet),
     
     (r'^(?P<theme_id>\d+)/rate',    rate),
     

@@ -14,10 +14,10 @@ from lib.cache import cached
 # View Methods
 # ------------------------------------------------------------------------------
 
+@cached('index', expire=(60 * 5))
 def index(request):
     user = users.GetCurrentUser()
     return respond(request, user, 'home/index', {
-        'highest_ranked':   Theme.highest_ranked(),
         'most_downloaded':  Theme.most_downloaded(),
     })
 

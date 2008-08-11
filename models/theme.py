@@ -1,5 +1,5 @@
 from google.appengine.ext import db
-
+from uuid import uuid4
 from lib.cache import cached
 
 from models.rating import HasRating
@@ -9,12 +9,14 @@ class Theme(db.Model, HasRating):
     # Metadata
     # --------------------------------------------------------------------------
     
-    name      = db.StringProperty(required=True)
+    name      = db.StringProperty(default="Untitled Theme")
     author    = db.UserProperty()
     created   = db.DateTimeProperty(auto_now_add=True)
     modified  = db.DateTimeProperty(auto_now=True)
     
-    description     = db.TextProperty("Description")
+    uuid      = db.StringProperty()
+    version   = db.IntegerProperty(default=1)
+
     num_downloads   = db.IntegerProperty("Number of Downloads", default=0)
 
     # --------------------------------------------------------------------------
@@ -142,23 +144,28 @@ class Theme(db.Model, HasRating):
 
     @classmethod
     @cached('highest_ranked', expire=60*5)
-    def highest_ranked(self, limit=6):
+    def highest_ranked(self, limit=12):
         return db.GqlQuery('SELECT * FROM Theme ORDER BY score DESC').fetch(limit=limit)
 
     @classmethod
     @cached('most_downloaded', expire=60*5)
-    def most_downloaded(self, limit=6):
+    def most_downloaded(self, limit=12):
         return db.GqlQuery('SELECT * FROM Theme ORDER BY num_downloads DESC').fetch(limit=limit)
 
     @classmethod
     @cached('theme', identifier='theme_id')
     def theme(self, theme_id=None):
         return self.get(db.Key.from_path(Theme.kind(), int(theme_id)))
-        
+    
+    @classmethod
+    @cached('theme_count')
+    def count(self):
+        return db.GqlQuery('SELECT * FROM Theme').count()
+            
     # --------------------------------------------------------------------------
     # Public Methods
     # --------------------------------------------------------------------------
-    
+
     def thumbnail_style(self):
         return "background:%s;color:%s" % (self.background_bg, self.text_fg)
     

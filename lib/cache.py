@@ -1,7 +1,7 @@
 from google.appengine.api import memcache
 
 class cached:
-    def __init__(self, key, expire=(60 * 60), identifier=None):
+    def __init__(self, key, expire=60, identifier=None):
         self.key = key
         self.expire = expire
         self.identifier = identifier
@@ -11,7 +11,10 @@ class cached:
             key = self.key
             
             if self.identifier is not None:
-                key = "%s_%s" % (str(self.key), str(kwds[self.identifier]))
+                try:
+                    key = "%s_%s" % (str(self.key), str(kwds[self.identifier]))
+                except KeyError:
+                    key = self.key
 
             cached_result = memcache.get(key)
             

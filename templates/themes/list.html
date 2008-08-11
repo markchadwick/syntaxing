@@ -1,23 +1,24 @@
 {% extends "base.html" %}
 
 {% block body %}
-<a href="{% url views.themes.new %}">Create new theme</a>
-
 <ul class="theme_list">
     {% for theme in themes %}
         <li class="theme">
             {% thumbnail theme %}
             <a href="{% url views.themes.get theme.key.id %}" class="title">{{ theme.name|escape }}</a>
-            <div class="about">
-                Created {{theme.created|date:"Y/m/d H:i"}} 
-                {% if theme.author %}by {{ theme.author.nickname }}{% endif %}
-            </div>
-
-            {% if theme.description %}
-                <div class="description">{{ theme.description|escape }}</div>
-            {% endif %}
+            <div class="about">{{theme.created|date:"Y/m/d H:i"}}</div>
         </li>
     {% endfor %}
 </ul>
 
+<ul class="pagination">
+    <li><b>Page</b>:</li>
+    {% for i in page_range %}
+        {% ifequal page i %}
+            <li class="active">&nbsp;{{ i }}&nbsp;</li>
+        {% else %}
+            <li><a href="/themes/page/{{ i }}">&nbsp;{{ i }}&nbsp;</a></li>
+        {% endifequal %}
+    {% endfor %}
+</ul>
 {% endblock %}

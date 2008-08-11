@@ -16,16 +16,9 @@
 			<dict>
                 <key>background</key>
                 <string>{{ theme.background_bg|upper }}</string>
-                <key>caret</key>
-                <string>#FFFFFF</string>
+
                 <key>foreground</key>
                 <string>{{ theme.text_fg|upper }}</string>
-                <key>invisibles</key>
-                <string>{{ theme.background_bg|upper }}</string>
-                <key>lineHighlight</key>
-                <string>{{ theme.background_bg|upper }}</string>
-                <key>selection</key>
-                <string>#EEEEEE</string>
 			</dict>
 		</dict>
 
@@ -54,6 +47,6 @@
 {% tm_theme 'Instance Variable' 'variable.other.readwrite.instance' theme 'instance_variable' %}
     </array>
     <key>uuid</key>
-    <string>12345678-1948-1888-6483-111122223333</string>
+    <string>{{ theme.uuid }}</string>
 </dict>
 </plist>

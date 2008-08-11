@@ -1,7 +1,9 @@
 # ------------------------------------------------------------------------------
 # Imports
 # ------------------------------------------------------------------------------
+import uuid
 
+from math import ceil
 from django import http
 from django import shortcuts
 from django.template import loader
@@ -20,19 +22,34 @@ from views import respond
 from models.theme import Theme
 
 from lib.syntax.conversion import *
+from lib.cache import cached
 
 # ------------------------------------------------------------------------------
 # View Methods
 # ------------------------------------------------------------------------------
 
-def list(request):
-    user = users.GetCurrentUser()
-    themes = db.GqlQuery('SELECT * FROM Theme ORDER BY created DESC')
+@cached('theme_list.html', identifier='page')
+def list(request, page=1):
+    limit = 6
     
+    page = int(page)
+    count = Theme.count()
+    offset = (page-1) * limit
+    
+    num_pages = ceil(float(count) / float(limit)) + 1
+    current_page = int((float(offset) / float(count)) * num_pages) + 1
+
+    user = users.GetCurrentUser()
+    themes = db.GqlQuery('SELECT * FROM Theme ORDER BY created DESC LIMIT %i OFFSET %i'%(limit, offset))
+
     return respond(request, user, 'themes/list', {
-        'themes':   themes,
-        'snippet':  tokenize_to_html(SNIPPETS['c']),
-        'user':     user
+        'themes':       themes,
+        'user':         user,
+        
+        'num_themes':   offset,
+        'num_pages':    num_pages,
+        'page_range':   range(1, num_pages),
+        'page':         page,
     })
 
 def rate(request, theme_id):
@@ -44,7 +61,8 @@ def rate(request, theme_id):
     theme.save()
 
     return HttpResponse()
-
+    
+@cached('theme_theme.html', identifier='theme_id', expire=(60 * 60 * 24))
 def get(request, theme_id):
     user = users.GetCurrentUser()
     theme = Theme.theme(theme_id=theme_id)
@@ -103,8 +121,14 @@ def edit(request, theme_id):
     return http.HttpResponseRedirect('/themes/')
 
 def create(request):
+    data = {}
+    
+    for key in request.POST.keys():
+        data[key] = request.POST.get(key)
+    
     user = users.GetCurrentUser()
-    form = ThemeForm(data=request.POST)
+    data['uuid'] = str(uuid.uuid4())
+    form = ThemeForm(data=data)
     language = request.POST.get('language', 'python')
     
     if(form.is_valid()):
@@ -160,7 +184,6 @@ class ThemeForm(djangoforms.ModelForm):
             'author',
             'created',
             'modified',
-            'description',
             'num_downloads',
             'num_votes',
             'vote_total',
@@ -176,7 +199,6 @@ class ThemeDisplayForm(djangoforms.ModelForm):
             'author',
             'created',
             'modified',
-            'description',
             'num_downloads',
             'num_votes',
             'vote_total',

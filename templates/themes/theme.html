@@ -1,10 +1,7 @@
 {% extends "base.html" %}
 {% block head %}
-    <script type="text/javascript" src="/static/javascript/jquery.rating.js"/></script>
-
-    <link type="text/css" rel="stylesheet" href="/static/stylesheets/theme_editor.css"/>
-    <link type="text/css" rel="stylesheet" href="/themes/{{ theme.key.id }}/theme.css"/>
-    <link type="text/css" rel="stylesheet" href="/static/stylesheets/rating.css"/>
+    <link type="text/css" rel="stylesheet" href="/static/stylesheets/theme_editor.css?v=1"/>
+    <link type="text/css" rel="stylesheet" href="/themes/{{ theme.key.id }}/theme.css?v=1"/>
 {% endblock %}
 
 {% block body %}
@@ -18,33 +15,12 @@
     </div><!-- #editor -->
 </div><!-- #theme_editor -->
 
-
-<p>
-    <h3>Rate this Theme</h3>
-    <div id="stars" class="rating">&nbsp;</div>
-</p>
-
-
-<div style="clear:both"/>
-
-<p/>
-<p/>
-
-
 <div id="download">
     <h3>Download this Theme</h3>
     <ul class="download">
-        <li class="vim"><a href="{% url views.theme_representations.vim theme.key.id %}">Vim</a></li>
-        <li class="editra"><a href="{% url views.theme_representations.editra theme.key.id %}">Editra</a></li>
         <li class="textmate"><a href="{% url views.theme_representations.textmate theme.key.id %}">TextMate</a></li>
         <li class="pygments"><a href="{% url views.theme_representations.pygment theme.key.id %}">Pygments CSS</a></li>
     </ul>
 </div>
-
-<script type="text/javascript">
-$(document).ready(function() {
-    $('#stars').rating('{% url views.themes.rate theme.key.id %}', {maxvalue:5, increment:0.5});
-});
-</script>
 
 {% endblock %}
