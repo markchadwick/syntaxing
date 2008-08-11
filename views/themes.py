@@ -146,7 +146,7 @@ def create(request):
 # ------------------------------------------------------------------------------
 # HTML Methods
 # ------------------------------------------------------------------------------
-
+@cached('theme_new.html', identifier='theme_id', expire=(60 * 60 * 24))
 def new(request):
     user = users.GetCurrentUser()
     theme = None

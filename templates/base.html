@@ -10,7 +10,7 @@
   <body>
     <div id="body">
         <div id="header">
-            <a href="/"><img src="/static/images/syntaxing.png"/></a>
+            <a href="/"><img src="/static/images/syntaxing.jpg"/></a>
         </div><!-- #header -->
         
         <div id="navigation">
@@ -23,7 +23,15 @@
         <div id="content">
             {% block body %}{% endblock %}
         </div><!-- #content -->
-    </div><!-- #content -->
+        
+        <div id="footer">
+            <ul>
+                <li><a href="/about">About</a></li>
+                <li><a href="/feedback">Feedback</a></li>
+            </ul>
+        </div><!-- #footer -->
+    </div><!-- #body -->
+    
     <script type="text/javascript">
         var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
         document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));

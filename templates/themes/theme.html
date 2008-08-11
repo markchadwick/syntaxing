@@ -18,6 +18,8 @@
 <div id="download">
     <h3>Download this Theme</h3>
     <ul class="download">
+        <li class="vim"><a href="{% url views.theme_representations.vim theme.key.id %}">Vim</a></li>
+        <li class="editra"><a href="{% url views.theme_representations.editra theme.key.id %}">Editra</a></li>
         <li class="textmate"><a href="{% url views.theme_representations.textmate theme.key.id %}">TextMate</a></li>
         <li class="pygments"><a href="{% url views.theme_representations.pygment theme.key.id %}">Pygments CSS</a></li>
     </ul>

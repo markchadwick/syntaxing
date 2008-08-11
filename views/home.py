@@ -14,13 +14,19 @@ from lib.cache import cached
 # View Methods
 # ------------------------------------------------------------------------------
 
-@cached('index', expire=(60 * 5))
+#@cached('index.html', expire=(60 * 5))
 def index(request):
     user = users.GetCurrentUser()
     return respond(request, user, 'home/index', {
         'most_downloaded':  Theme.most_downloaded(),
     })
-
+    
+#@cached('about.html', expire=(60 * 60))
 def about(request):
     user = users.GetCurrentUser()
     return respond(request, user, 'home/about')
+
+#@cached('feedback.html', expire=(60 * 60))
+def feedback(request)
+    user = users.GetCurrentUser()
+    return respond(request, user, 'home/feedback')
