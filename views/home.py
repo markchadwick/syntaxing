@@ -2,10 +2,7 @@
 # Imports
 # ------------------------------------------------------------------------------
 
-from django import http
-from google.appengine.api import users
-
-from views import respond
+from django import shortcuts
 
 from models.theme import Theme
 from lib.cache import cached
@@ -16,17 +13,14 @@ from lib.cache import cached
 
 #@cached('index.html', expire=(60 * 5))
 def index(request):
-    user = users.GetCurrentUser()
-    return respond(request, user, 'home/index', {
+    return shortcuts.render_to_response('home/index.html', {
         'most_downloaded':  Theme.most_downloaded(),
     })
     
 #@cached('about.html', expire=(60 * 60))
 def about(request):
-    user = users.GetCurrentUser()
-    return respond(request, user, 'home/about')
+    return shortcuts.render_to_response('home/about.html')
 
 #@cached('feedback.html', expire=(60 * 60))
 def feedback(request):
-    user = users.GetCurrentUser()
-    return respond(request, user, 'home/feedback')
+    return shortcuts.render_to_response('home/feedback.html')

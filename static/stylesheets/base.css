@@ -18,6 +18,7 @@ a img {
 
 body {
     text-align:     center;
+    padding:        0 0 20px 0;
 }
 
 #body {
@@ -79,13 +80,15 @@ body {
  */
 ul#footer {
     clear:          both;
-    font-size:      90%;
-    margin:         10px 0 0 0;
+    font-size:      85%;
+    margin:         10px 0 20px 0;
     padding:        0;
+    list-style-type:none;
 }
 
 ul#footer li {
-    float:          left;
+    float:          right;
+    margin:         0 10px;
 }
 
 /*

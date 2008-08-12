@@ -36,7 +36,9 @@ jQuery._theme_editor = function(container, picker, title) {
             '<div id="editor">',
                 '<div id="editor_title">' + title +'</div>',
                 '<div id="body">',
-                    '<div id="code_view" class="background"></div>',
+                    '<div id="code_view" class="background">',
+                    $('#code').html(),
+                    '</div>',
                 '</div>',
             '</div>',
         ].join("\n"));
@@ -98,13 +100,14 @@ jQuery._theme_editor = function(container, picker, title) {
     // Main
     
     editor._bind_container();
-    editor._load_highlighted_code();
+//    editor._load_highlighted_code();
 }
 
 ////////////////////////////////////////////////////////////////////////////////
 // Document Loading
 
 $(document).ready(function() {
+    var _default_theme_name = "Untitled Theme";
     var theme_picker = $.theme_picker('#theme_picker');
     var theme_editor = $.theme_editor('#theme_editor', theme_picker, "New Theme");
     
@@ -129,14 +132,14 @@ $(document).ready(function() {
      * Cute, toggling name field
      */
     var _theme_name_form = $('#id_name');
-    var _default_value = "Untitled Theme";
+
     var val;
     
     function _changed() {
         val = _theme_name_form.val();
         
-        if(!val || val == "" || val == _default_value) {
-            _theme_name_form.css('color', '#ccc').val(_default_value);
+        if(!val || val == "" || val == _default_theme_name) {
+            _theme_name_form.css('color', '#ccc').val(_default_theme_name);
         } else {
             _theme_name_form.css('color', '#000');
         }
@@ -146,7 +149,7 @@ $(document).ready(function() {
     
     function _clicked(event) {
         _changed();
-        if(!val || val == "" || val == _default_value) {
+        if(!val || val == "" || val == _default_theme_name) {
             _theme_name_form.val("").css('color', '#000');
         }
     }

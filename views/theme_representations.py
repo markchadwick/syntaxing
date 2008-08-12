@@ -1,27 +1,13 @@
 # ------------------------------------------------------------------------------
 # Imports
 # ------------------------------------------------------------------------------
-import urllib
-
-from django import http
-from django import shortcuts
 from django.template import loader
 from django.http import HttpResponse
 
 from google.appengine.ext import db
-from google.appengine.api import users
-from google.appengine.ext.db import djangoforms
 
-from lib.syntax import lexers
-from lib.syntax import tokenize as tokenize_to_html
-from lib.syntax.snippets import SNIPPETS
 from lib.syntax.pygment import theme_to_css as pygmentize
-
-from views import respond
 from models.theme import Theme
-
-from lib.syntax.conversion import *
-
 # ------------------------------------------------------------------------------
 # Theme Representations
 # ------------------------------------------------------------------------------
@@ -61,7 +47,7 @@ def textmate(request, theme_id):
     }))
     
     response['Content-Type'] = "application/octet-stream; charset=utf-8"
-    response['Content-Disposition'] = "attachment; filename=%s.tmTheme" % urllib.urlencode(theme.name)
+    response['Content-Disposition'] = "attachment; filename=%s.tmTheme" % str(theme.name)
     return response
 
 def pygment(request, theme_id):
